@@ -31,15 +31,8 @@ const ContactPage = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'mittaldomadiya7096@gmail.com',
-      href: 'mailto:mittaldomadiya7096@gmail.com',
-      color: '#ffffff',
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+91 7096827305',
-      href: 'tel:+917096827305',
+      value: 'mittalaws@gmail.com',
+      href: 'mailto:mittalaws@gmail.com',
       color: '#ffffff',
     },
     {
@@ -52,16 +45,16 @@ const ContactPage = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: '#', color: '#ffffff' },
-    { icon: Linkedin, label: 'LinkedIn', href: '#', color: '#ffffff' },
-    { icon: Twitter, label: 'Twitter', href: '#', color: '#ffffff' },
+    { icon: Github, label: 'GitHub', href: 'https://github.com/mittal122', color: '#ffffff' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mittal-domadiya-412550310/', color: '#ffffff' }
+    
   ];
 
   return (
     <>
       <Helmet>
         <title>Contact - Mittal Domadiya</title>
-        <meta name="description" content="Get in touch with Mittal Domadiya. Email: mittaldomadiya7096@gmail.com, Phone: +91 7096827305. Available for DevOps consulting and collaboration." />
+        <meta name="description" content="Get in touch with Mittal Domadiya. Email: mittalaws@gmail.com. Available for DevOps consulting and collaboration." />
       </Helmet>
 
       <div className="min-h-screen pt-[7.25rem] md:pt-[7.75rem] lg:pt-[8.5rem] pb-16 px-4">
@@ -234,6 +227,8 @@ const ContactPage = () => {
                       <motion.a
                         key={index}
                         href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
@@ -241,13 +236,6 @@ const ContactPage = () => {
                         className="p-4 bg-[#1A1A1A] rounded-lg border border-white/10 cursor-pointer"
                         style={{
                           boxShadow: `0 0 20px ${social.color}20`,
-                        }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toast({
-                            title: '🚧 Feature Coming Soon!',
-                            description: "This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀",
-                          });
                         }}
                       >
                         <Icon style={{ color: social.color }} size={24} />

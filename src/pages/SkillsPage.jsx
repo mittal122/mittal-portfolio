@@ -13,6 +13,7 @@ const SkillsPage = () => {
       name: 'Cloud',
       icon: Cloud,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
       skills: ['AWS', 'Amazon Redshift', 'Terraform'],
       description: 'Cloud infrastructure and services',
     },
@@ -21,6 +22,7 @@ const SkillsPage = () => {
       name: 'Containerization',
       icon: Container,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop&q=80',
       skills: ['Docker', 'Kubernetes'],
       description: 'Container orchestration and management',
     },
@@ -29,6 +31,7 @@ const SkillsPage = () => {
       name: 'CI/CD',
       icon: Workflow,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop&q=80',
       skills: ['Jenkins', 'CI/CD Pipelines'],
       description: 'Continuous integration and deployment',
     },
@@ -37,6 +40,7 @@ const SkillsPage = () => {
       name: 'Languages',
       icon: Code,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&q=80',
       skills: ['Python', 'Dart', 'SQL'],
       description: 'Programming and scripting languages',
     },
@@ -45,6 +49,7 @@ const SkillsPage = () => {
       name: 'Tools',
       icon: Wrench,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=600&fit=crop&q=80',
       skills: ['Linux', 'Git', 'DBMS'],
       description: 'Development and system tools',
     },
@@ -53,6 +58,7 @@ const SkillsPage = () => {
       name: 'Advanced',
       icon: Brain,
       color: '#ffffff',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
       skills: ['Prompt Engineering', 'Machine Learning', 'LangChain', 'RAG Concepts'],
       description: 'Emerging technologies and AI',
     },
@@ -136,7 +142,7 @@ const SkillsPage = () => {
                     whileHover={{ scale: 1.05, y: -10 }}
                     onHoverStart={() => setActiveCategory(category.id)}
                     onHoverEnd={() => setActiveCategory(null)}
-                    className="relative bg-[#1A1A1A] rounded-xl border border-white/10 p-6 cursor-pointer transition-all"
+                    className="relative bg-[#1A1A1A] rounded-xl border border-white/10 overflow-hidden cursor-pointer transition-all"
                     style={{
                       boxShadow: activeCategory === category.id 
                         ? `0 0 40px ${category.color}60` 
@@ -145,7 +151,7 @@ const SkillsPage = () => {
                   >
                     {/* Glowing orb */}
                     <motion.div
-                      className="absolute -top-4 -right-4 w-8 h-8 rounded-full"
+                      className="absolute -top-4 -right-4 w-8 h-8 rounded-full z-10"
                       style={{ backgroundColor: category.color }}
                       animate={{
                         scale: activeCategory === category.id ? [1, 1.2, 1] : 1,
@@ -156,19 +162,34 @@ const SkillsPage = () => {
                       transition={{ duration: 0.5 }}
                     />
 
-                    <div className="flex items-center gap-3 mb-4">
-                      <div 
-                        className="p-3 rounded-lg"
-                        style={{ backgroundColor: `${category.color}20` }}
-                      >
-                        <Icon style={{ color: category.color }} size={28} />
+                    {/* Category Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <motion.img
+                        src={category.image}
+                        alt={category.name}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div className="flex items-center gap-3">
+                          <div 
+                            className="p-2.5 rounded-lg backdrop-blur-md"
+                            style={{ backgroundColor: `${category.color}30` }}
+                          >
+                            <Icon style={{ color: category.color }} size={24} />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white drop-shadow-lg">{category.name}</h3>
+                        </div>
                       </div>
-                      <h3 className="text-2xl font-bold text-white">{category.name}</h3>
                     </div>
 
-                    <p className="text-white/60 text-sm mb-4">{category.description}</p>
+                    <div className="p-6">
 
-                    <div className="space-y-2">
+                      <p className="text-white/60 text-sm mb-4">{category.description}</p>
+
+                      <div className="space-y-2">
                       {category.skills.map((skill, i) => (
                         <motion.div
                           key={i}
@@ -184,25 +205,26 @@ const SkillsPage = () => {
                           <span className="text-white/80 text-sm">{skill}</span>
                         </motion.div>
                       ))}
-                    </div>
+                      </div>
 
-                    {/* Skill level indicator */}
-                    <motion.div
-                      className="mt-4 h-1 bg-[#0F0F0F] rounded-full overflow-hidden"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
-                    >
+                      {/* Skill level indicator */}
                       <motion.div
-                        className="h-full rounded-full"
-                        style={{ 
-                          background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
-                        }}
-                        initial={{ width: 0 }}
-                        animate={{ width: '85%' }}
-                        transition={{ duration: 1, delay: index * 0.1 + 0.7 }}
-                      />
-                    </motion.div>
+                        className="mt-4 h-1 bg-[#0F0F0F] rounded-full overflow-hidden"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
+                      >
+                        <motion.div
+                          className="h-full rounded-full"
+                          style={{ 
+                            background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
+                          }}
+                          initial={{ width: 0 }}
+                          animate={{ width: '85%' }}
+                          transition={{ duration: 1, delay: index * 0.1 + 0.7 }}
+                        />
+                      </motion.div>
+                    </div>
                   </motion.div>
                 );
               })}
