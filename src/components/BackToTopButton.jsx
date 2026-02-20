@@ -36,9 +36,10 @@ const BackToTopButton = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-4 rounded-sm bg-white text-black shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
+          className="fixed bottom-8 right-8 z-40 p-4 rounded-sm text-white shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
           style={{
-            boxShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+            background: 'linear-gradient(135deg, #CF9EFF, #9B59B6)',
+            boxShadow: '0 0 30px rgba(207, 158, 255, 0.4)',
           }}
         >
           <ArrowUp size={24} />

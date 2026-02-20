@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+
+const accent = '#CF9EFF';
+const ad = 'rgba(207,158,255,';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -33,22 +36,28 @@ const ContactPage = () => {
       label: 'Email',
       value: 'mittalaws@gmail.com',
       href: 'mailto:mittalaws@gmail.com',
-      color: '#ffffff',
     },
     {
       icon: MapPin,
       label: 'Location',
       value: 'India',
       href: null,
-      color: '#ffffff',
     },
   ];
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: 'https://github.com/mittal122', color: '#ffffff' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mittal-domadiya-412550310/', color: '#ffffff' }
-    
+    { icon: Github, label: 'GitHub', href: 'https://github.com/mittal122' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mittal-domadiya-412550310/' },
   ];
+
+  const inputStyle = {
+    background: `${ad}0.04)`,
+    border: `1px solid ${ad}0.15)`,
+    borderRadius: '10px',
+    color: '#fff',
+  };
+
+  const focusGlow = `0 0 20px ${ad}0.25), 0 0 0 1px ${accent}`;
 
   return (
     <>
@@ -66,10 +75,20 @@ const ContactPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white" style={{ textShadow: '0 0 40px rgba(150, 150, 150, 0.5), 0 0 80px rgba(150, 150, 150, 0.3)' }}>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-16 h-[2px] mx-auto mb-6"
+              style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+            />
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
+              style={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
+            >
               Get In Touch
             </h1>
-            <p className="text-xl text-[#888888] max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: `${ad}0.5)` }}>
               Let's collaborate on your next DevOps project or discuss cloud infrastructure solutions
             </p>
           </motion.div>
@@ -82,71 +101,32 @@ const ContactPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-white/80 mb-2 font-medium">
-                    Name
-                  </label>
-                  <motion.input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    onFocus={() => setIsFocused({ ...isFocused, name: true })}
-                    onBlur={() => setIsFocused({ ...isFocused, name: false })}
-                    required
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white transition-all"
-                    placeholder="Your name"
-                    animate={{
-                      boxShadow: isFocused.name ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 0px rgba(255, 255, 255, 0)',
-                    }}
-                  />
-                </div>
+                {['name', 'email', 'subject'].map((field) => (
+                  <div key={field}>
+                    <label htmlFor={field} className="block mb-2 font-medium capitalize" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                      {field}
+                    </label>
+                    <motion.input
+                      type={field === 'email' ? 'email' : 'text'}
+                      id={field}
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      onFocus={() => setIsFocused({ ...isFocused, [field]: true })}
+                      onBlur={() => setIsFocused({ ...isFocused, [field]: false })}
+                      required
+                      className="w-full px-4 py-3 placeholder-gray-600 focus:outline-none transition-all"
+                      placeholder={field === 'name' ? 'Your name' : field === 'email' ? 'your.email@example.com' : "What's this about?"}
+                      style={inputStyle}
+                      animate={{
+                        boxShadow: isFocused[field] ? focusGlow : '0 0 0 rgba(0,0,0,0)',
+                      }}
+                    />
+                  </div>
+                ))}
 
                 <div>
-                  <label htmlFor="email" className="block text-white/80 mb-2 font-medium">
-                    Email
-                  </label>
-                  <motion.input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    onFocus={() => setIsFocused({ ...isFocused, email: true })}
-                    onBlur={() => setIsFocused({ ...isFocused, email: false })}
-                    required
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white transition-all"
-                    placeholder="your.email@example.com"
-                    animate={{
-                      boxShadow: isFocused.email ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 0px rgba(255, 255, 255, 0)',
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-white/80 mb-2 font-medium">
-                    Subject
-                  </label>
-                  <motion.input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    onFocus={() => setIsFocused({ ...isFocused, subject: true })}
-                    onBlur={() => setIsFocused({ ...isFocused, subject: false })}
-                    required
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white transition-all"
-                    placeholder="What's this about?"
-                    animate={{
-                      boxShadow: isFocused.subject ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 0px rgba(255, 255, 255, 0)',
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-white/80 mb-2 font-medium">
+                  <label htmlFor="message" className="block mb-2 font-medium" style={{ color: 'rgba(255,255,255,0.7)' }}>
                     Message
                   </label>
                   <motion.textarea
@@ -158,10 +138,11 @@ const ContactPage = () => {
                     onBlur={() => setIsFocused({ ...isFocused, message: false })}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white transition-all resize-none"
+                    className="w-full px-4 py-3 placeholder-gray-600 focus:outline-none transition-all resize-none"
                     placeholder="Tell me about your project..."
+                    style={inputStyle}
                     animate={{
-                      boxShadow: isFocused.message ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 0px rgba(255, 255, 255, 0)',
+                      boxShadow: isFocused.message ? focusGlow : '0 0 0 rgba(0,0,0,0)',
                     }}
                   />
                 </div>
@@ -170,12 +151,15 @@ const ContactPage = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-6 py-4 bg-white text-black font-semibold rounded-sm flex items-center justify-center gap-2 cursor-pointer transition-all uppercase tracking-wider"
+                  className="cursor-target w-full px-6 py-4 font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all uppercase tracking-wider text-sm"
                   style={{
-                    boxShadow: '0 0 30px rgba(255, 255, 255, 0.4)',
+                    background: `linear-gradient(135deg, ${accent} 0%, #9B59B6 100%)`,
+                    color: '#0a0a0a',
+                    borderRadius: '10px',
+                    boxShadow: `0 0 30px ${ad}0.3), 0 4px 15px ${ad}0.2)`,
                   }}
                 >
-                  <Send size={20} />
+                  <Send size={18} />
                   Send Message
                 </motion.button>
               </form>
@@ -198,18 +182,26 @@ const ContactPage = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                      whileHover={{ x: 10 }}
-                      className="flex items-center gap-4 p-4 bg-[#1A1A1A] rounded-lg border border-white/10 cursor-pointer"
+                      whileHover={{ x: 6 }}
+                      className="cursor-target flex items-center gap-4 p-4 cursor-pointer transition-all"
+                      style={{
+                        background: `${ad}0.04)`,
+                        border: `1px solid ${ad}0.12)`,
+                        borderRadius: '12px',
+                      }}
                       onClick={() => info.href && window.open(info.href, '_blank')}
                     >
                       <div
-                        className="p-3 rounded-lg"
-                        style={{ backgroundColor: `${info.color}20` }}
+                        className="p-3"
+                        style={{
+                          background: `${ad}0.1)`,
+                          borderRadius: '10px',
+                        }}
                       >
-                        <Icon style={{ color: info.color }} size={24} />
+                        <Icon style={{ color: accent }} size={22} />
                       </div>
                       <div>
-                        <div className="text-white/60 text-sm">{info.label}</div>
+                        <div className="text-sm" style={{ color: `${ad}0.45)` }}>{info.label}</div>
                         <div className="text-white font-medium">{info.value}</div>
                       </div>
                     </motion.div>
@@ -232,13 +224,16 @@ const ContactPage = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                        whileHover={{ scale: 1.1, y: -5 }}
-                        className="p-4 bg-[#1A1A1A] rounded-lg border border-white/10 cursor-pointer"
+                        whileHover={{ scale: 1.1, y: -4 }}
+                        className="cursor-target p-4 cursor-pointer transition-all"
                         style={{
-                          boxShadow: `0 0 20px ${social.color}20`,
+                          background: `${ad}0.06)`,
+                          border: `1px solid ${ad}0.15)`,
+                          borderRadius: '12px',
+                          boxShadow: `0 0 15px ${ad}0.05)`,
                         }}
                       >
-                        <Icon style={{ color: social.color }} size={24} />
+                        <Icon style={{ color: accent }} size={22} />
                       </motion.a>
                     );
                   })}
@@ -250,18 +245,21 @@ const ContactPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] p-6 rounded-xl border border-white/30"
+                className="p-6"
                 style={{
-                  boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
+                  background: `linear-gradient(135deg, ${ad}0.06), ${ad}0.02))`,
+                  border: `1px solid ${ad}0.2)`,
+                  borderRadius: '14px',
+                  boxShadow: `0 0 30px ${ad}0.06)`,
                 }}
               >
                 <h3 className="text-xl font-bold text-white mb-3">Availability</h3>
-                <p className="text-white/70 mb-4">
-                  Currently available for freelance projects and consulting opportunities. 
+                <p className="mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                  Currently available for freelance projects and consulting opportunities.
                   Let's build something amazing together!
                 </p>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
+                  <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#4ade80', boxShadow: '0 0 10px rgba(74,222,128,0.5)' }} />
                   <span className="text-white font-medium">Available for work</span>
                 </div>
               </motion.div>

@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Award, CheckCircle, Calendar } from 'lucide-react';
 
+const accent = '#CF9EFF';
+const ad = 'rgba(207,158,255,';
+
 const CertificationsPage = () => {
   const [flippedCard, setFlippedCard] = useState(null);
 
@@ -77,10 +80,20 @@ const CertificationsPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white" style={{ textShadow: '0 0 40px rgba(150, 150, 150, 0.5), 0 0 80px rgba(150, 150, 150, 0.3)' }}>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-16 h-[2px] mx-auto mb-6"
+              style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+            />
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
+              style={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
+            >
               Certifications
             </h1>
-            <p className="text-xl text-[#888888] max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: `${ad}0.5)` }}>
               Continuous learning and professional development journey
             </p>
           </motion.div>
@@ -93,17 +106,23 @@ const CertificationsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-[#1A1A1A] rounded-xl border border-white/10 p-6 text-center"
+                className="p-6 text-center"
+                style={{
+                  background: `${ad}0.04)`,
+                  border: `1px solid ${ad}0.12)`,
+                  borderRadius: '14px',
+                }}
               >
                 <motion.div
-                  className="text-5xl font-black text-white mb-2"
+                  className="text-5xl font-black mb-2"
+                  style={{ color: accent }}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                 >
                   {stat.value}{stat.suffix}
                 </motion.div>
-                <div className="text-white/60">{stat.label}</div>
+                <div style={{ color: `${ad}0.5)` }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -116,7 +135,7 @@ const CertificationsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative h-[320px] cursor-pointer"
+                className="cursor-target relative h-[320px] cursor-pointer"
                 style={{ perspective: '1000px' }}
                 onMouseEnter={() => setFlippedCard(cert.id)}
                 onMouseLeave={() => setFlippedCard(null)}
@@ -129,21 +148,24 @@ const CertificationsPage = () => {
                 >
                   {/* Front */}
                   <div
-                    className="absolute inset-0 bg-[#1A1A1A] rounded-xl border border-white/10 p-6 flex flex-col"
+                    className="absolute inset-0 p-6 flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
-                      boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
+                      background: `${ad}0.04)`,
+                      border: `1px solid ${ad}0.12)`,
+                      borderRadius: '14px',
+                      boxShadow: `0 0 25px ${ad}0.06)`,
                     }}
                   >
                     <div className="text-6xl mb-4">{cert.icon}</div>
                     <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">{cert.title}</h3>
-                    <p className="text-[#888888] font-medium mb-2">{cert.provider}</p>
-                    <div className="flex items-center gap-2 text-white/60 text-sm mb-4">
+                    <p className="font-medium mb-2" style={{ color: accent }}>{cert.provider}</p>
+                    <div className="flex items-center gap-2 text-sm mb-4" style={{ color: `${ad}0.4)` }}>
                       <Calendar size={16} />
                       <span>{cert.date}</span>
                     </div>
                     <div className="mt-auto">
-                      <div className="flex items-center gap-2 text-white/40 text-sm">
+                      <div className="flex items-center gap-2 text-sm" style={{ color: `${ad}0.35)` }}>
                         <CheckCircle size={16} />
                         <span>Verified Certificate</span>
                       </div>
@@ -152,11 +174,14 @@ const CertificationsPage = () => {
 
                   {/* Back */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] rounded-xl border border-white/30 p-6"
+                    className="absolute inset-0 p-6"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
-                      boxShadow: '0 0 40px rgba(255, 255, 255, 0.3)',
+                      background: `linear-gradient(135deg, ${ad}0.08), ${ad}0.02))`,
+                      border: `1px solid ${ad}0.25)`,
+                      borderRadius: '14px',
+                      boxShadow: `0 0 35px ${ad}0.1)`,
                     }}
                   >
                     <h4 className="text-lg font-bold text-white mb-3">Skills Gained</h4>
@@ -164,45 +189,60 @@ const CertificationsPage = () => {
                       {cert.skills.map((skill, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 bg-white/10 border border-white/30 text-white text-xs rounded-full"
+                          className="px-3 py-1 text-xs"
+                          style={{
+                            background: `${ad}0.08)`,
+                            border: `1px solid ${ad}0.2)`,
+                            color: accent,
+                            borderRadius: '4px',
+                          }}
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
-                    <p className="text-white/70 text-sm">{cert.description}</p>
+                    <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>{cert.description}</p>
                   </div>
                 </motion.div>
               </motion.div>
             ))}
           </div>
 
-          {/* Learning Timeline */}
+          {/* Learning Journey */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="bg-[#1A1A1A] rounded-xl border border-white/10 p-8"
+            className="p-8"
+            style={{
+              background: `${ad}0.04)`,
+              border: `1px solid ${ad}0.12)`,
+              borderRadius: '14px',
+            }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <Award className="text-white" size={32} />
+              <Award style={{ color: accent }} size={28} />
               <h2 className="text-3xl font-bold text-white">Learning Journey</h2>
             </div>
-            <p className="text-white/70 mb-6">
-              My commitment to continuous learning drives me to stay updated with the latest DevOps practices, 
-              cloud technologies, and industry standards. Each certification represents hands-on experience and 
+            <p className="mb-6" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              My commitment to continuous learning drives me to stay updated with the latest DevOps practices,
+              cloud technologies, and industry standards. Each certification represents hands-on experience and
               practical knowledge that I apply in real-world scenarios.
             </p>
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-white/10 border border-white/30 text-white rounded-full text-sm">
-                🎯 Goal-Oriented Learning
-              </span>
-              <span className="px-4 py-2 bg-white/10 border border-white/30 text-white rounded-full text-sm">
-                💡 Practical Application
-              </span>
-              <span className="px-4 py-2 bg-white/10 border border-white/30 text-white rounded-full text-sm">
-                🚀 Continuous Growth
-              </span>
+              {['🎯 Goal-Oriented Learning', '💡 Practical Application', '🚀 Continuous Growth'].map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 text-sm text-white"
+                  style={{
+                    background: `${ad}0.06)`,
+                    border: `1px solid ${ad}0.18)`,
+                    borderRadius: '6px',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
         </div>

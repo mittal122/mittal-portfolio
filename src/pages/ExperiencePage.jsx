@@ -1,138 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Briefcase, Bot, Video, Camera } from 'lucide-react';
+import { Briefcase, Bot, Video, Camera, ExternalLink, ChevronRight } from 'lucide-react';
+import CardSwap, { Card } from '@/components/CardSwap';
 
-// Category color mapping for accent bars
-const categoryColors = {
-  'Cloud Architecture': {
-    accent: '#0EA5E9', // Sky blue
-    glow: 'rgba(14, 165, 233, 0.3)'
-  },
-  'Containerized Deployment': {
-    accent: '#10B981', // Green
-    glow: 'rgba(16, 185, 129, 0.3)'
-  },
-  'Full-Stack Kubernetes Project': {
-    accent: '#10B981', // Green
-    glow: 'rgba(16, 185, 129, 0.3)'
-  },
-  'Software Development': {
-    accent: '#10B981', // Green
-    glow: 'rgba(16, 185, 129, 0.3)'
-  },
-  'Mobile Development': {
-    accent: '#8B5CF6', // Purple
-    glow: 'rgba(139, 92, 246, 0.3)'
-  },
-  'AI Agent': {
-    accent: '#8B5CF6', // Purple
-    glow: 'rgba(139, 92, 246, 0.3)'
-  }
-};
-
-// Simple Project Card Component with Subtle Animations
-const ProjectCard = ({ project, index }) => {
-  const colors = categoryColors[project.type] || categoryColors['Software Development'];
-  
-  return (
-    <motion.div 
-      className="group cursor-pointer"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ 
-        scale: 1.05,
-        transition: { duration: 0.3 }
-      }}
-    >
-      <div className="relative h-full rounded-2xl overflow-hidden backdrop-blur-xl bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-black/40 border border-white/10 transition-all duration-300 group-hover:border-white/30 group-hover:shadow-2xl">
-        {/* Color-coded accent bar at top */}
-        <div 
-          className="absolute top-0 left-0 right-0 h-1 transition-all duration-300"
-          style={{
-            backgroundColor: colors.accent,
-            boxShadow: `0 0 20px ${colors.glow}`
-          }}
-        />
-        
-        {/* Card content */}
-        <div className="p-6 flex flex-col h-full">
-          {/* Header: Serial Number + Title */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <span 
-                className="text-xs font-mono tracking-wider px-2 py-1 rounded border"
-                style={{
-                  color: colors.accent,
-                  borderColor: colors.accent,
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
-                }}
-              >
-                #{String(project.id).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] font-mono text-white/40 tracking-wider">
-                {project.period.toUpperCase()}
-              </span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">
-              {project.title}
-            </h3>
-            <p className="text-xs text-white/50 mt-1">{project.company}</p>
-          </div>
-          
-          {/* Project Image */}
-          <div className="mb-4 flex-shrink-0 overflow-hidden rounded-lg">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110"
-              style={{
-                border: `1px solid ${colors.accent}30`
-              }}
-            />
-          </div>
-          
-          {/* Description (2 lines max) */}
-          <p className="text-sm text-white/60 leading-relaxed line-clamp-2 mb-4 flex-grow">
-            {project.description}
-          </p>
-          
-          {/* Tech Stack (static chips) */}
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {project.technologies.slice(0, 3).map((tech, i) => (
-              <div
-                key={i}
-                className="px-3 py-1 rounded-full text-[10px] font-mono tracking-wide"
-                style={{
-                  backgroundColor: `${colors.accent}15`,
-                  color: colors.accent,
-                  border: `1px solid ${colors.accent}30`
-                }}
-              >
-                {tech}
-              </div>
-            ))}
-            {project.technologies.length > 3 && (
-              <div
-                className="px-3 py-1 rounded-full text-[10px] font-mono tracking-wide text-white/40"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)'
-                }}
-              >
-                +{project.technologies.length - 3}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+// Unified purple accent palette
+const accent = '#CF9EFF';
+const accentDim = 'rgba(207,158,255,';
 
 // Main ExperiencePage Component
 const ExperiencePage = () => {
+  const [activeProject, setActiveProject] = useState(0);
+
   const projects = [
     {
       id: 1,
@@ -263,7 +142,7 @@ const ExperiencePage = () => {
       </Helmet>
 
       <div className="min-h-screen pt-[7.25rem] md:pt-[7.75rem] lg:pt-[8.5rem] pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Page Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -271,25 +150,291 @@ const ExperiencePage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white" style={{ textShadow: '0 0 40px rgba(150, 150, 150, 0.5), 0 0 80px rgba(150, 150, 150, 0.3)' }}>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-16 h-[2px] mx-auto mb-6"
+              style={{ background: 'linear-gradient(90deg, transparent, #CF9EFF, transparent)' }}
+            />
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
+              style={{ textShadow: '0 0 50px rgba(207,158,255,0.4), 0 0 100px rgba(207,158,255,0.15)' }}
+            >
               Experience & Projects
             </h1>
-            <p className="text-xl text-[#888888] max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: 'rgba(207,158,255,0.5)' }}>
               A showcase of professional work spanning cloud architecture, containerization, AI agents, and full-stack development.
             </p>
           </motion.div>
 
-          {/* 3-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
+          {/* ── Split Layout: Details Left + CardSwap Right ── */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-20">
+
+            {/* Left Side — Active Project Detail */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {/* Active project detail card */}
+              <motion.div
+                key={activeProject}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="p-8 mb-8"
+                style={{
+                  background: `${accentDim}0.04)`,
+                  border: `1px solid ${accentDim}0.12)`,
+                  borderRadius: '20px',
+                }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span
+                    className="text-xs font-mono tracking-wider px-3 py-1"
+                    style={{
+                      color: accent,
+                      border: `1px solid ${accentDim}0.25)`,
+                      background: `${accentDim}0.08)`,
+                      borderRadius: '4px',
+                    }}
+                  >
+                    #{String(projects[activeProject].id).padStart(2, '0')}
+                  </span>
+                  <span className="text-xs font-mono tracking-wider" style={{ color: `${accentDim}0.4)` }}>
+                    {projects[activeProject].period} · {projects[activeProject].type}
+                  </span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 leading-tight">
+                  {projects[activeProject].title}
+                </h2>
+                <p className="text-sm mb-5" style={{ color: `${accentDim}0.5)` }}>
+                  {projects[activeProject].company}
+                </p>
+
+                <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  {projects[activeProject].description}
+                </p>
+
+                {/* Achievements */}
+                <div className="mb-6">
+                  <h4 className="text-xs font-mono tracking-[0.2em] uppercase mb-3" style={{ color: accent }}>
+                    Key Achievements
+                  </h4>
+                  <div className="space-y-2">
+                    {projects[activeProject].achievements.map((a, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <ChevronRight size={14} className="flex-shrink-0 mt-0.5" style={{ color: accent }} />
+                        <span className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>{a}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech stack */}
+                <div className="flex flex-wrap gap-2">
+                  {projects[activeProject].technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 text-[11px] font-mono tracking-wide"
+                      style={{
+                        background: `${accentDim}0.06)`,
+                        color: accent,
+                        border: `1px solid ${accentDim}0.18)`,
+                        borderRadius: '6px',
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Project selector list */}
+              <div className="space-y-2">
+                {projects.map((project, index) => (
+                  <motion.button
+                    key={project.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                    onClick={() => setActiveProject(index)}
+                    className="cursor-target w-full text-left px-5 py-3.5 flex items-center gap-4 transition-all duration-300 group cursor-pointer"
+                    style={{
+                      background: activeProject === index ? `${accentDim}0.08)` : 'transparent',
+                      border: `1px solid ${activeProject === index ? `${accentDim}0.2)` : `${accentDim}0.06)`}`,
+                      borderRadius: '12px',
+                    }}
+                  >
+                    <span
+                      className="text-[10px] font-mono w-6 text-center flex-shrink-0"
+                      style={{ color: activeProject === index ? accent : `${accentDim}0.3)` }}
+                    >
+                      {String(project.id).padStart(2, '0')}
+                    </span>
+                    <span
+                      className="text-sm font-medium truncate transition-colors duration-300"
+                      style={{ color: activeProject === index ? 'white' : 'rgba(255,255,255,0.45)' }}
+                    >
+                      {project.title}
+                    </span>
+                    <span
+                      className="ml-auto text-[10px] font-mono flex-shrink-0"
+                      style={{ color: `${accentDim}0.3)` }}
+                    >
+                      {project.period}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Side — CardSwap Visual */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="hidden lg:block"
+            >
+              <div style={{ height: '650px', position: 'relative' }}>
+                <CardSwap
+                  cardDistance={55}
+                  verticalDistance={65}
+                  delay={4000}
+                  pauseOnHover={true}
+                  width={420}
+                  height={520}
+                  skewAmount={5}
+                  easing="elastic"
+                >
+                  {projects.map((project, index) => (
+                    <Card key={project.id}>
+                      <div className="w-full h-full flex flex-col overflow-hidden" style={{ borderRadius: '16px' }}>
+                        {/* Card image */}
+                        <div className="relative h-[55%] overflow-hidden flex-shrink-0">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background: 'linear-gradient(to bottom, transparent 40%, #060010 100%)',
+                            }}
+                          />
+                          <span
+                            className="absolute top-4 left-4 text-[10px] font-mono tracking-wider px-2 py-1"
+                            style={{
+                              color: accent,
+                              background: 'rgba(6,0,16,0.7)',
+                              border: `1px solid ${accentDim}0.25)`,
+                              borderRadius: '4px',
+                              backdropFilter: 'blur(8px)',
+                            }}
+                          >
+                            #{String(project.id).padStart(2, '0')}
+                          </span>
+                        </div>
+
+                        {/* Card content */}
+                        <div className="flex-1 p-5 flex flex-col justify-between" style={{ background: '#060010' }}>
+                          <div>
+                            <span className="text-[10px] font-mono tracking-wider block mb-2" style={{ color: `${accentDim}0.4)` }}>
+                              {project.period} · {project.type}
+                            </span>
+                            <h3 className="text-xl font-bold text-white mb-2 leading-snug">
+                              {project.title}
+                            </h3>
+                            <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                              {project.description}
+                            </p>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5 mt-3">
+                            {project.technologies.slice(0, 3).map((tech, i) => (
+                              <span
+                                key={i}
+                                className="px-2 py-0.5 text-[9px] font-mono"
+                                style={{
+                                  background: `${accentDim}0.06)`,
+                                  color: accent,
+                                  border: `1px solid ${accentDim}0.15)`,
+                                  borderRadius: '4px',
+                                }}
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </CardSwap>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── Mobile/Tablet Card Grid (shown below lg) ── */}
+          <div className="lg:hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  className="cursor-target group cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                  onClick={() => setActiveProject(index)}
+                >
+                  <div
+                    className="relative h-full overflow-hidden transition-all duration-300"
+                    style={{
+                      background: `${accentDim}0.03)`,
+                      border: `1px solid ${activeProject === index ? `${accentDim}0.25)` : `${accentDim}0.1)`}`,
+                      borderRadius: '14px',
+                    }}
+                  >
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 30%, #060010 100%)' }} />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold text-white mb-1">{project.title}</h3>
+                      <p className="text-xs line-clamp-2" style={{ color: 'rgba(255,255,255,0.45)' }}>{project.description}</p>
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {project.technologies.slice(0, 3).map((tech, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 text-[9px] font-mono"
+                            style={{
+                              background: `${accentDim}0.06)`,
+                              color: accent,
+                              border: `1px solid ${accentDim}0.15)`,
+                              borderRadius: '4px',
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
-
 
 export default ExperiencePage;

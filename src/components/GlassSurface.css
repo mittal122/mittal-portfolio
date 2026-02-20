@@ -1,0 +1,112 @@
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.26s ease-out;
+}
+
+.glass-surface__filter {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+/* SVG filter version (Chromium only) */
+.glass-surface--svg {
+  background: hsl(0 0% 0% / var(--glass-frost, 0.1));
+  backdrop-filter: var(--filter-id, url(#glass-filter)) saturate(var(--glass-saturation, 1));
+  border: 1px solid transparent;
+  box-shadow:
+    0 0 2px 1px rgba(255, 255, 255, 0.05) inset,
+    0 0 10px 4px rgba(255, 255, 255, 0.03) inset,
+    0px 4px 16px rgba(0, 0, 0, 0.2),
+    0px 8px 24px rgba(0, 0, 0, 0.15),
+    0px 16px 56px rgba(0, 0, 0, 0.1);
+}
+
+/* Fallback — always visible on dark backgrounds */
+.glass-surface--fallback {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0.08) 60%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(16px) saturate(1.6) brightness(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6) brightness(1.1);
+  border: 1px solid transparent;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Top highlight line — signature glass shine */
+.glass-surface--fallback::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 70%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  z-index: 2;
+}
+
+/* Subtle inner glow */
+.glass-surface--fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% 0%,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-surface--fallback {
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid transparent;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.glass-surface:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
+}

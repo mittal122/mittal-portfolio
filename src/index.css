@@ -67,7 +67,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    background-color: #0a0a0a;
+    background-color: #060010;
     color: #e5e5e5;
     cursor: default;
   }
@@ -104,18 +104,18 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #060010;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a4a;
-  border-radius: 5px;
+  background: rgba(207, 158, 255, 0.2);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666666;
+  background: rgba(207, 158, 255, 0.35);
 }

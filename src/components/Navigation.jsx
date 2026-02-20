@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import GlassSurface from './GlassSurface';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,13 +14,13 @@ const Navigation = () => {
 
   const leftNavItems = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
     { path: '/experience', label: 'Experience' },
+    { path: '/skills', label: 'Skills' },
   ];
 
   const rightNavItems = [
-    { path: '/skills', label: 'Skills' },
     { path: '/certifications', label: 'Certifications' },
+    { path: '/fun', label: 'Fun' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -59,55 +60,39 @@ const Navigation = () => {
       style={{ paddingTop: '1.5rem' }}
     >
       <div className="max-w-6xl mx-auto relative">
-        {/* Glassmorphism Background with Specular Highlights */}
-        <motion.div 
-          className="absolute inset-0 rounded-full bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-3xl"
+        {/* Main GlassSurface Background */}
+        <motion.div
           animate={{ 
             opacity: hidden && !isHovered ? 0 : 1,
             scaleY: hidden && !isHovered ? 0.6 : 1,
           }}
           transition={{ duration: 0.3 }}
-          style={{
-            transformOrigin: 'top',
-            boxShadow: `
-              0 8px 32px 0 rgba(255, 255, 255, 0.1),
-              inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
-              inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1)
-            `
-          }}
-        />
-        
-        {/* Thin Semi-transparent Border */}
-        <motion.div 
-          className="absolute inset-0 rounded-full border border-white/20"
-          animate={{ 
-            opacity: hidden && !isHovered ? 0 : 1,
-            scaleY: hidden && !isHovered ? 0.6 : 1,
-          }}
-          transition={{ duration: 0.3 }}
-          style={{
-            transformOrigin: 'top',
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%)',
-            WebkitMaskImage: 'linear-gradient(black, black)',
-            maskImage: 'linear-gradient(black, black)',
-          }}
-        />
-        
-        {/* Corner Highlights */}
-        <motion.div 
-          className="absolute top-0 left-8 w-24 h-24 rounded-full bg-white/10 blur-2xl"
-          animate={{ opacity: hidden && !isHovered ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-        />
-        <motion.div 
-          className="absolute top-0 right-8 w-24 h-24 rounded-full bg-white/10 blur-2xl"
-          animate={{ opacity: hidden && !isHovered ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-        />
+          style={{ transformOrigin: 'top' }}
+          className="absolute inset-0"
+        >
+          <GlassSurface
+            height="100%"
+            borderRadius={50}
+            brightness={30}
+            opacity={0.95}
+            blur={5}
+            displace={2.5}
+            backgroundOpacity={0.4}
+            saturation={1.8}
+            distortionScale={-250}
+            redOffset={10}
+            greenOffset={20}
+            blueOffset={30}
+            mixBlendMode="screen"
+            className="w-full h-full"
+          >
+            <div className="w-full h-full" />
+          </GlassSurface>
+        </motion.div>
         
         {/* Logo Background Bar (visible when hidden) */}
         <motion.div
-          className="absolute top-0 h-16 rounded-full bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-3xl border border-white/20 flex items-center justify-center"
+          className="absolute top-0 h-16"
           animate={{ 
             opacity: hidden && !isHovered ? 1 : 0,
             width: hidden && !isHovered ? '240px' : '100%',
@@ -116,14 +101,27 @@ const Navigation = () => {
             transform: hidden && !isHovered ? 'translateX(-40%)' : 'translateX(0)',
           }}
           transition={{ duration: 0.3 }}
-          style={{
-            zIndex: 5,
-            boxShadow: `
-              0 8px 32px 0 rgba(255, 255, 255, 0.1),
-              inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)
-            `
-          }}
-        />
+          style={{ zIndex: 5 }}
+        >
+          <GlassSurface
+            height="100%"
+            borderRadius={50}
+            brightness={30}
+            opacity={0.95}
+            blur={5}
+            displace={2.5}
+            backgroundOpacity={0.4}
+            saturation={1.8}
+            distortionScale={-250}
+            redOffset={10}
+            greenOffset={20}
+            blueOffset={30}
+            mixBlendMode="screen"
+            className="w-full h-full"
+          >
+            <div className="w-full h-full" />
+          </GlassSurface>
+        </motion.div>
         
         <div className="relative flex items-center justify-between h-16 px-8" style={{ zIndex: 10 }}>
           {/* Left Navigation */}
@@ -139,7 +137,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative px-7 py-3.5 group cursor-pointer"
+                className="cursor-target relative px-7 py-3.5 group cursor-pointer"
               >
                 <span className={`relative z-10 text-base font-semibold tracking-wider transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] ${
                   isActive(item.path) 
@@ -151,9 +149,11 @@ const Navigation = () => {
                 
                 {/* Hover Effect Background with Glassmorphism */}
                 <div
-                  className="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/20"
+                  className="absolute inset-0 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
-                    boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.2)'
+                    background: 'rgba(207,158,255,0.08)',
+                    border: '1px solid rgba(207,158,255,0.15)',
+                    boxShadow: 'inset 0 1px 1px 0 rgba(207,158,255,0.15)'
                   }}
                 />
 
@@ -161,10 +161,12 @@ const Navigation = () => {
                 {isActive(item.path) && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 rounded-full bg-white/15 backdrop-blur-sm border border-white/30"
+                    className="absolute inset-0 backdrop-blur-sm"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     style={{
-                      boxShadow: '0 0 20px rgba(255, 255, 255, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)'
+                      background: 'rgba(207,158,255,0.12)',
+                      border: '1px solid rgba(207,158,255,0.25)',
+                      boxShadow: '0 0 20px rgba(207,158,255,0.2), inset 0 1px 1px 0 rgba(207,158,255,0.2)'
                     }}
                   />
                 )}
@@ -173,7 +175,7 @@ const Navigation = () => {
           </motion.div>
 
           {/* Logo - Center */}
-          <Link to="/" className="cursor-pointer flex items-center relative z-20">
+          <Link to="/" className="cursor-target cursor-pointer flex items-center relative z-20">
             <motion.img 
               src="https://horizons-cdn.hostinger.com/cefdf522-75c3-48d6-8c09-370295405681/3cd355b3f9ce8b4bbf3d0f61081cf805.png"
               alt="Mittal Domadiya Logo"
@@ -201,7 +203,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative px-7 py-3.5 group cursor-pointer"
+                className="cursor-target relative px-7 py-3.5 group cursor-pointer"
               >
                 <span className={`relative z-10 text-base font-semibold tracking-wider transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] ${
                   isActive(item.path) 
@@ -213,9 +215,11 @@ const Navigation = () => {
                 
                 {/* Hover Effect Background with Glassmorphism */}
                 <div
-                  className="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/20"
+                  className="absolute inset-0 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
-                    boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.2)'
+                    background: 'rgba(207,158,255,0.08)',
+                    border: '1px solid rgba(207,158,255,0.15)',
+                    boxShadow: 'inset 0 1px 1px 0 rgba(207,158,255,0.15)'
                   }}
                 />
 
@@ -223,10 +227,12 @@ const Navigation = () => {
                 {isActive(item.path) && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 rounded-full bg-white/15 backdrop-blur-sm border border-white/30"
+                    className="absolute inset-0 backdrop-blur-sm"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     style={{
-                      boxShadow: '0 0 20px rgba(255, 255, 255, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)'
+                      background: 'rgba(207,158,255,0.12)',
+                      border: '1px solid rgba(207,158,255,0.25)',
+                      boxShadow: '0 0 20px rgba(207,158,255,0.2), inset 0 1px 1px 0 rgba(207,158,255,0.2)'
                     }}
                   />
                 )}
@@ -242,9 +248,11 @@ const Navigation = () => {
               pointerEvents: hidden && !isHovered ? 'none' : 'auto'
             }}
             transition={{ duration: 0.3 }}
-            className="md:hidden p-2.5 text-white hover:bg-white/10 rounded-full transition-all duration-300 cursor-pointer relative z-10 border border-white/20 backdrop-blur-sm"
+            className="cursor-target md:hidden p-2.5 text-white transition-all duration-300 cursor-pointer relative z-10 backdrop-blur-sm"
             style={{
-              boxShadow: '0 2px 8px rgba(255, 255, 255, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2)',
+              background: 'rgba(207,158,255,0.06)',
+              border: '1px solid rgba(207,158,255,0.15)',
+              boxShadow: '0 2px 8px rgba(207,158,255,0.08), inset 0 1px 1px 0 rgba(207,158,255,0.1)',
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'
             }}
           >
@@ -260,54 +268,54 @@ const Navigation = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden max-w-6xl mx-auto mt-3 rounded-3xl overflow-hidden relative"
+            className="md:hidden max-w-6xl mx-auto mt-3 overflow-hidden relative"
           >
-            {/* Glassmorphism Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-3xl"
-              style={{
-                boxShadow: `
-                  0 8px 32px 0 rgba(255, 255, 255, 0.1),
-                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
-                  inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1)
-                `
-              }}
-            />
-            
-            {/* Border */}
-            <div className="absolute inset-0 rounded-3xl border border-white/20" />
-            
-            {/* Corner Highlights */}
-            <div className="absolute top-0 left-8 w-20 h-20 rounded-full bg-white/10 blur-xl" />
-            <div className="absolute bottom-0 right-8 w-20 h-20 rounded-full bg-white/10 blur-xl" />
-            
-            <div className="relative px-4 py-6 space-y-2">
-              {allNavItems.map((item, index) => (
-                <motion.div
-                  key={item.path}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-5 py-3.5 rounded-full text-base font-semibold tracking-wider transition-all duration-300 cursor-pointer backdrop-blur-sm ${
-                      isActive(item.path)
-                        ? 'bg-white/15 text-white border border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
-                        : 'text-gray-300 hover:text-white hover:bg-white/10 border border-white/10'
-                    }`}
-                    style={{
-                      textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
-                      boxShadow: isActive(item.path) 
-                        ? 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(255, 255, 255, 0.1)'
-                        : 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1)'
-                    }}
+            <GlassSurface
+              borderRadius={24}
+              brightness={30}
+              opacity={0.95}
+              blur={5}
+              displace={2.5}
+              backgroundOpacity={0.4}
+              saturation={1.8}
+              distortionScale={-250}
+              redOffset={10}
+              greenOffset={20}
+              blueOffset={30}
+              mixBlendMode="screen"
+              className="w-full"
+            >
+              <div className="px-4 py-6 space-y-2 w-full">
+                {allNavItems.map((item, index) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block px-5 py-3.5 text-base font-semibold tracking-wider transition-all duration-300 cursor-pointer backdrop-blur-sm ${
+                        isActive(item.path)
+                          ? 'text-white'
+                          : 'text-gray-300 hover:text-white'
+                      }`}
+                      style={{
+                        textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
+                        background: isActive(item.path) ? 'rgba(207,158,255,0.12)' : 'transparent',
+                        border: isActive(item.path) ? '1px solid rgba(207,158,255,0.25)' : '1px solid rgba(207,158,255,0.08)',
+                        boxShadow: isActive(item.path) 
+                          ? 'inset 0 1px 1px 0 rgba(207,158,255,0.2), 0 4px 12px rgba(207,158,255,0.08)'
+                          : 'inset 0 1px 1px 0 rgba(207,158,255,0.05)'
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </GlassSurface>
           </motion.div>
         )}
       </AnimatePresence>
