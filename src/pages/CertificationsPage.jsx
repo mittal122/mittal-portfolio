@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Award, CheckCircle, Calendar } from 'lucide-react';
+import TrueFocus from '@/components/TrueFocus';
 
 const accent = '#CF9EFF';
 const ad = 'rgba(207,158,255,';
@@ -87,12 +88,19 @@ const CertificationsPage = () => {
               className="w-16 h-[2px] mx-auto mb-6"
               style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
             />
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
-              style={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
-            >
-              Certifications
-            </h1>
+            <div className="mb-6">
+              <TrueFocus
+                sentence="Certifications"
+                manualMode={false}
+                blurAmount={0}
+                borderColor="#CF9EFF"
+                glowColor="rgba(207, 158, 255, 0.6)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={1}
+                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
+                textStyle={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
+              />
+            </div>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: `${ad}0.5)` }}>
               Continuous learning and professional development journey
             </p>

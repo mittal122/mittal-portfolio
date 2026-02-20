@@ -3,6 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Gamepad2 } from 'lucide-react';
+import TrueFocus from '@/components/TrueFocus';
 
 const FunPage = () => {
   return (
@@ -28,12 +29,19 @@ const FunPage = () => {
               className="w-16 h-[2px] mx-auto mb-6"
               style={{ background: 'linear-gradient(90deg, transparent, #CF9EFF, transparent)' }}
             />
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
-              style={{ textShadow: '0 0 50px rgba(207,158,255,0.4), 0 0 100px rgba(207,158,255,0.15)' }}
-            >
-              Fun Zone
-            </h1>
+            <div className="mb-6">
+              <TrueFocus
+                sentence="Fun Zone"
+                manualMode={false}
+                blurAmount={5}
+                borderColor="#CF9EFF"
+                glowColor="rgba(207, 158, 255, 0.6)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={1}
+                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
+                textStyle={{ textShadow: '0 0 50px rgba(207,158,255,0.4), 0 0 100px rgba(207,158,255,0.15)' }}
+              />
+            </div>
             <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'rgba(207,158,255,0.5)' }}>
               Take a break and enjoy some mini-games & interactive experiences.
             </p>

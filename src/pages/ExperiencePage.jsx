@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Briefcase, Bot, Video, Camera, ExternalLink, ChevronRight } from 'lucide-react';
 import CardSwap, { Card } from '@/components/CardSwap';
+import TrueFocus from '@/components/TrueFocus';
 
 // Unified purple accent palette
 const accent = '#CF9EFF';
@@ -157,12 +158,19 @@ const ExperiencePage = () => {
               className="w-16 h-[2px] mx-auto mb-6"
               style={{ background: 'linear-gradient(90deg, transparent, #CF9EFF, transparent)' }}
             />
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
-              style={{ textShadow: '0 0 50px rgba(207,158,255,0.4), 0 0 100px rgba(207,158,255,0.15)' }}
-            >
-              Experience & Projects
-            </h1>
+            <div className="mb-6">
+              <TrueFocus
+                sentence="Experience & Projects"
+                manualMode={false}
+                blurAmount={5}
+                borderColor="#CF9EFF"
+                glowColor="rgba(207, 158, 255, 0.6)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={1}
+                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
+                textStyle={{ textShadow: '0 0 50px rgba(207,158,255,0.4), 0 0 100px rgba(207,158,255,0.15)' }}
+              />
+            </div>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: 'rgba(207,158,255,0.5)' }}>
               A showcase of professional work spanning cloud architecture, containerization, AI agents, and full-stack development.
             </p>

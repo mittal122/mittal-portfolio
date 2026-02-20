@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import TrueFocus from '@/components/TrueFocus';
 
 const accent = '#CF9EFF';
 const ad = 'rgba(207,158,255,';
@@ -82,12 +83,19 @@ const ContactPage = () => {
               className="w-16 h-[2px] mx-auto mb-6"
               style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
             />
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
-              style={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
-            >
-              Get In Touch
-            </h1>
+            <div className="mb-6">
+              <TrueFocus
+                sentence="Get In Touch"
+                manualMode={false}
+                blurAmount={5}
+                borderColor="#CF9EFF"
+                glowColor="rgba(207, 158, 255, 0.6)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={1}
+                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
+                textStyle={{ textShadow: `0 0 50px ${ad}0.4), 0 0 100px ${ad}0.15)` }}
+              />
+            </div>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: `${ad}0.5)` }}>
               Let's collaborate on your next DevOps project or discuss cloud infrastructure solutions
             </p>

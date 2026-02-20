@@ -5,21 +5,9 @@ import { motion, useInView } from 'framer-motion';
 import { Sparkles, ArrowRight, Terminal, Cloud, Server, GraduationCap, Users, Award, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LaserFlow from '@/components/LaserFlow';
+import TrueFocus from '@/components/TrueFocus';
 
 const HomePage = () => {
-  const [displayText, setDisplayText] = useState('');
-  const fullText = 'MITTAL DOMADIYA';
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (currentIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + fullText[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex]);
 
   const roles = [
     { icon: Terminal, label: 'DevOps Engineer' },
@@ -146,26 +134,27 @@ const HomePage = () => {
                 </span>
               </motion.div>
 
-              {/* Typewriter name */}
-              <motion.h1
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white leading-[0.95]"
-                style={{
-                  textShadow: '0 0 60px rgba(207,158,255,0.35), 0 0 120px rgba(207,158,255,0.12)',
-                  letterSpacing: '-0.03em',
-                }}
+              {/* TrueFocus animated name */}
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
               >
-                {displayText}
-                <motion.span
-                  className="text-[#CF9EFF]"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                >
-                  |
-                </motion.span>
-              </motion.h1>
+                <TrueFocus
+                  sentence="MITTAL DOMADIYA"
+                  manualMode={false}
+                  blurAmount={5}
+                  borderColor="#CF9EFF"
+                  glowColor="rgba(207, 158, 255, 0.6)"
+                  animationDuration={0.5}
+                  pauseBetweenAnimations={1}
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white leading-[0.95] justify-start"
+                  textStyle={{
+                    textShadow: '0 0 60px rgba(207,158,255,0.35), 0 0 120px rgba(207,158,255,0.12)',
+                    letterSpacing: '-0.03em',
+                  }}
+                />
+              </motion.div>
 
               {/* Decorative accent line */}
               <motion.div

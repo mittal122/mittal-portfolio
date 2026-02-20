@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Cloud, Container, Workflow, Code, Wrench, Brain } from 'lucide-react';
+import TrueFocus from '@/components/TrueFocus';
 
 const accent = '#CF9EFF';
 const accentDim = 'rgba(207,158,255,';
@@ -84,12 +85,19 @@ const SkillsPage = () => {
               className="w-16 h-[2px] mx-auto mb-6"
               style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
             />
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-white"
-              style={{ textShadow: `0 0 50px ${accentDim}0.4), 0 0 100px ${accentDim}0.15)` }}
-            >
-              Skills & Expertise
-            </h1>
+            <div className="mb-6">
+              <TrueFocus
+                sentence="Skills & Expertise"
+                manualMode={false}
+                blurAmount={5}
+                borderColor="#CF9EFF"
+                glowColor="rgba(207, 158, 255, 0.6)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={1}
+                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
+                textStyle={{ textShadow: `0 0 50px ${accentDim}0.4), 0 0 100px ${accentDim}0.15)` }}
+              />
+            </div>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: `${accentDim}0.5)` }}>
               A comprehensive ecosystem of DevOps and cloud technologies
             </p>
