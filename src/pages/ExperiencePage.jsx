@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Briefcase, Bot, Video, Camera, ExternalLink, ChevronRight } from 'lucide-react';
+import { Boxes, GitBranch, Server, Cloud, LineChart, Mail, Container, ExternalLink, ChevronRight } from 'lucide-react';
 import CardSwap, { Card } from '@/components/CardSwap';
 import TrueFocus from '@/components/TrueFocus';
 
@@ -16,121 +16,128 @@ const ExperiencePage = () => {
   const projects = [
     {
       id: 1,
-      title: 'AWS Redshift Cloud Project',
-      company: 'Freelance/Client Work',
-      location: 'USA',
-      period: '2025',
-      type: 'Cloud Architecture',
-      icon: Briefcase,
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
-      description: 'Configured Amazon Redshift for large-scale analytics workloads, optimizing query performance and data warehouse architecture.',
-      technologies: ['AWS Redshift', 'SQL', 'Data Warehousing', 'Cloud Architecture'],
+      title: 'Helmsman — AI Kubernetes Deployment Platform',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'DevOps Platform',
+      icon: Boxes,
+      link: 'https://github.com/mittal122/helmsman',
+      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop&q=80',
+      description: 'A platform that guides a developer through the full Kubernetes deploy lifecycle — containerize, generate manifests, scan, deploy, verify, and self-heal — with every command and error streamed live to the UI.',
+      technologies: ['Python', 'FastAPI', 'Kubernetes', 'Docker', 'Helm', 'kind'],
       achievements: [
-        'Optimized query performance by 40%',
-        'Implemented automated data pipelines',
-        'Reduced infrastructure costs by 25%',
+        'Deterministic, tested core touches the cluster; the LLM stays advisory and never writes applied YAML',
+        'Deploy from a container image or straight from a Git repo — builds the Dockerfile and loads it locally, no registry needed',
+        'Renders multi-service docker-compose stacks as per-service Helm releases in one namespace',
       ]
     },
     {
       id: 2,
-      title: 'Kubernetes & Docker Project',
-      company: 'PDF to Document Converter',
-      location: 'Surat',
-      period: '2025',
-      type: 'Containerized Deployment',
-      icon: Briefcase,
-      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop&q=80',
-      description: 'Built and deployed a containerized PDF conversion service using Kubernetes orchestration and Docker containers.',
-      technologies: ['Kubernetes', 'Docker', 'Python', 'Microservices'],
+      title: 'AutoSRE — Autonomous GitOps & Auto-Remediation',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'SRE / GitOps',
+      icon: GitBranch,
+      link: 'https://github.com/mittal122/Autonomous-GitOps-Auto-Remediation-Platform',
+      image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&q=80',
+      description: 'A closed-loop SRE control plane that watches a Kubernetes cluster, diagnoses failures, and applies safe GitOps-native remediations with rollback — escalating to a human only when it cannot fix an issue.',
+      technologies: ['Go', 'Python', 'Terraform', 'ArgoCD', 'Helm', 'Kubernetes'],
       achievements: [
-        'Deployed scalable microservices architecture',
-        'Implemented CI/CD pipelines',
-        'Achieved 99.9% uptime',
+        'Detect → Diagnose → Decide → Remediate → Verify control loop',
+        'Go controller for telemetry ingestion and remediation, Python LLM service for root-cause diagnosis',
+        'EKS cluster, IAM, and networking provisioned as immutable infrastructure with Terraform',
       ]
     },
     {
       id: 3,
-      title: 'Real-Time Chat Application',
-      company: 'WhatsApp-like Messaging Platform',
-      location: 'Kubernetes Deployment',
-      period: '2025',
-      type: 'Full-Stack Kubernetes Project',
-      icon: Briefcase,
+      title: 'KubeChat — Microservices Chat on AWS EKS',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'Cloud-Native Microservices',
+      icon: Server,
+      link: 'https://github.com/mittal122/kubechat-microservices',
       image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=600&fit=crop&q=80',
-      description: 'Developed and deployed a real-time chat application similar to WhatsApp using Node.js, MongoDB, and Kubernetes orchestration with advanced messaging features.',
-      technologies: ['Kubernetes', 'Node.js', 'MongoDB', 'Socket.io', 'WebSockets'],
+      description: 'A real-time chat platform built as independent microservices on AWS EKS, communicating over WebSocket, with a full CI/CD pipeline and observability stack.',
+      technologies: ['Kubernetes', 'AWS EKS', 'Docker', 'Jenkins', 'WebSocket', 'Prometheus', 'Grafana', 'Loki'],
       achievements: [
-        'Real-time typing indicators and presence status',
-        'Message read/seen receipts functionality',
-        'Scalable microservices architecture on Kubernetes',
+        'Independent microservices on AWS EKS communicating over WebSocket',
+        'Automated build and deploy via a Jenkins pipeline with multiple documented deploy paths',
+        'Metrics and log-based incident detection with Prometheus, Grafana, and Loki; load-tested with k6',
       ]
     },
     {
       id: 4,
-      title: 'Python Developer Intern',
-      company: 'Tech Solutions',
-      location: 'Surat',
-      period: '2022',
-      type: 'Software Development',
-      icon: Briefcase,
-      image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&q=80',
-      description: 'Developed Python-based automation scripts and backend services for enterprise applications.',
-      technologies: ['Python', 'Django', 'REST APIs', 'PostgreSQL'],
+      title: 'CloudScope — AWS Infrastructure Intelligence',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'Cloud Observability',
+      icon: Cloud,
+      link: 'https://github.com/mittal122/The-Interdictor-Track',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
+      description: 'A platform that turns raw AWS telemetry into readable diagrams and actionable insight — real-time visibility, cost-waste detection, and automated security analysis.',
+      technologies: ['TypeScript', 'Node.js', 'NVIDIA NIM', 'Docker', 'Prometheus', 'Terraform'],
       achievements: [
-        'Automated 15+ manual processes',
-        'Built RESTful APIs for client applications',
-        'Improved code efficiency by 30%',
+        'AI-organized 3D isometric infrastructure maps (Networking → Compute → Data) using NVIDIA NIM',
+        'Flags orphaned EBS volumes, idle EC2, and leftover load balancers to cut cloud waste',
+        'Reverse-Terraform: exports live AWS config into HCL for disaster recovery and cloning',
       ]
     },
     {
       id: 5,
-      title: 'Flutter Developer Intern',
-      company: 'Mobile Innovations',
-      location: 'Surat',
-      period: '2023',
-      type: 'Mobile Development',
-      icon: Briefcase,
+      title: 'AI Trading Platform',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'AI / Full-Stack',
+      icon: LineChart,
+      link: 'https://github.com/mittal122/AI-Trading-Platform',
       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&q=80',
-      description: 'Created cross-platform mobile applications using Flutter framework with focus on user experience.',
-      technologies: ['Flutter', 'Dart', 'Firebase', 'Mobile UI/UX'],
+      description: 'An AI-powered algorithmic trading terminal for crypto with live market data, rule-based strategies, backtesting, and LLM-assisted analysis — paper trading by default.',
+      technologies: ['FastAPI', 'PyTorch', 'React', 'PostgreSQL', 'Docker', 'Binance API'],
       achievements: [
-        'Developed 3 production mobile apps',
-        'Implemented real-time features with Firebase',
-        'Maintained 4.5+ star ratings',
+        'Live candlestick charts, order-book pressure, funding, and a volume-spike scanner',
+        'Eight rule-based strategies plus a Smart Money Concepts engine and pattern recognition',
+        'OHLCV foundation model for price forecasting, with backtesting and portfolio analytics',
       ]
     },
     {
       id: 6,
-      title: 'Script to Video Agent',
-      company: 'AI Automation Project',
-      location: 'Remote',
-      period: '2025',
-      type: 'AI Agent',
-      icon: Video,
+      title: 'Job Finder — Multi-Tenant Email Outreach',
+      company: 'Open Source',
+      location: 'GitHub',
+      period: '2026',
+      type: 'Full-Stack SaaS',
+      icon: Mail,
+      link: 'https://github.com/mittal122/job-finder',
       image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop&q=80',
-      description: 'AI-powered Python agent that transforms written scripts into professional videos with automated scene generation, voiceover, and visual effects.',
-      technologies: ['Python', 'AI/ML', 'Video Generation', 'Text-to-Speech'],
+      description: 'A multi-user tool where each account is a fully isolated tenant — connect a Gmail account, generate a personalized message per recipient, and send with configurable pacing and a unified history.',
+      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Docker', 'REST APIs'],
       achievements: [
-        'Automated script-to-video generation pipeline',
-        'AI-driven scene composition and transitions',
-        'Text-to-speech integration for narration',
+        'Full multi-tenant data isolation with email/password and Google sign-in',
+        'Credentials and API keys encrypted at rest; signed unsubscribe links and a suppression list',
+        'LLM-personalized bulk send with Excel-to-placeholder mapping and saveable presets',
       ]
     },
     {
       id: 7,
-      title: 'Virtual Try-On Studio',
-      company: 'AI Fashion Agent',
-      location: 'Remote',
+      title: 'Jenkins CI/CD Pipeline',
+      company: 'Open Source',
+      location: 'GitHub',
       period: '2025',
-      type: 'AI Agent',
-      icon: Camera,
+      type: 'CI/CD',
+      icon: Container,
+      link: 'https://github.com/mittal122/jenkins-cicd-pipeline',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&q=80',
-      description: 'Professional AI agent for studio-level clothing photography with model face integration and style customization.',
-      technologies: ['Python', 'Computer Vision', 'Image Gen', 'FastAPI'],
+      description: 'A containerized Django application shipped through a full Jenkins CI/CD pipeline to Kubernetes.',
+      technologies: ['Python', 'Django', 'Docker', 'Kubernetes', 'Jenkins'],
       achievements: [
-        'Studio-quality clothing visualization',
-        'Custom model face integration',
-        'Professional photography automation',
+        'End-to-end Jenkins pipeline from build to Kubernetes deploy',
+        'Containerized app with docker-compose for local development',
+        'Kubernetes manifests for orchestrated deployment',
       ]
     }
   ];
@@ -258,6 +265,25 @@ const ExperiencePage = () => {
                     </span>
                   ))}
                 </div>
+
+                {/* View Code link */}
+                {projects[activeProject].link && (
+                  <a
+                    href={projects[activeProject].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-target inline-flex items-center gap-2 mt-6 px-4 py-2 text-sm font-medium transition-all duration-300 hover:gap-3"
+                    style={{
+                      color: accent,
+                      border: `1px solid ${accentDim}0.3)`,
+                      background: `${accentDim}0.08)`,
+                      borderRadius: '8px',
+                    }}
+                  >
+                    <ExternalLink size={15} />
+                    View Code on GitHub
+                  </a>
+                )}
               </motion.div>
 
               {/* Project selector list */}
