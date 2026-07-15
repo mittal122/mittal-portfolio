@@ -14,55 +14,55 @@ const CertificationsPage = () => {
   const certifications = [
     {
       id: 1,
+      title: 'AWS Academy Graduate – Cloud Developing',
+      provider: 'AWS Academy',
+      date: '2024',
+      icon: '☁️',
+      skills: ['AWS', 'Cloud Development', 'EC2', 'S3', 'Lambda'],
+      description: 'Graduate-level AWS Academy program covering cloud application development on AWS.',
+    },
+    {
+      id: 2,
       title: 'Kubernetes for the Absolute Beginners – Hands-on',
-      provider: 'KodeKloud/Udemy',
+      provider: 'Udemy',
       date: '2024',
       icon: '☸️',
       skills: ['Kubernetes', 'Container Orchestration', 'Pods', 'Deployments'],
       description: 'Comprehensive hands-on training in Kubernetes fundamentals and container orchestration.',
     },
     {
-      id: 2,
-      title: 'Hands-on Introduction to Linux Commands and Shell Scripting',
-      provider: 'IBM/Coursera',
+      id: 3,
+      title: 'Kubernetes Administration (CKA) – Course & Practice Tests',
+      provider: 'Udemy',
+      date: '2025',
+      icon: '🎯',
+      skills: ['Kubernetes Admin', 'Cluster Management', 'Troubleshooting', 'Security'],
+      description: 'CKA-focused course and practice exams covering cluster administration (exam not yet taken).',
+    },
+    {
+      id: 4,
+      title: 'Linux Commands and Shell Scripting – Hands-on',
+      provider: 'Coursera',
       date: '2024',
       icon: '🐧',
       skills: ['Linux', 'Shell Scripting', 'Bash', 'Command Line'],
       description: 'Practical experience with Linux system administration and shell scripting.',
     },
     {
-      id: 3,
-      title: 'Certified Kubernetes Administrator (CKA) with Practice Tests',
-      provider: 'KodeKloud',
-      date: '2025',
-      icon: '🎯',
-      skills: ['Kubernetes Admin', 'Cluster Management', 'Troubleshooting', 'Security'],
-      description: 'Advanced Kubernetes administration with real-world practice scenarios.',
-    },
-    {
-      id: 4,
-      title: 'Google Cloud Skills',
-      provider: 'Google',
-      date: '2024',
-      icon: '☁️',
-      skills: ['Google Cloud', 'Cloud Architecture', 'GCP Services'],
-      description: 'Expertise in Google Cloud Platform services and architecture.',
-    },
-    {
       id: 5,
-      title: 'Jenkins for Beginners',
-      provider: 'Udemy',
+      title: 'Google Cloud Skill Badges',
+      provider: 'Google Cloud',
       date: '2024',
-      icon: '🔧',
-      skills: ['Jenkins', 'CI/CD', 'Automation', 'Pipelines'],
-      description: 'Fundamentals of continuous integration and deployment with Jenkins.',
+      icon: '🏅',
+      skills: ['Google Cloud', 'GCP Services', 'Hands-on Labs'],
+      description: 'Hands-on skill badges completed on Google Cloud Platform services.',
     },
   ];
 
   const stats = [
-    { label: 'Certifications', value: 5, suffix: '+' },
-    { label: 'Hours of Learning', value: 200, suffix: '+' },
-    { label: 'Skills Acquired', value: 15, suffix: '+' },
+    { label: 'Certifications', value: 5, suffix: '' },
+    { label: 'Focus Areas', value: 4, suffix: '' },
+    { label: 'Skills Practiced', value: 15, suffix: '+' },
   ];
 
   return (
@@ -175,7 +175,7 @@ const CertificationsPage = () => {
                     <div className="mt-auto">
                       <div className="flex items-center gap-2 text-sm" style={{ color: `${ad}0.35)` }}>
                         <CheckCircle size={16} />
-                        <span>Verified Certificate</span>
+                        <span>Certificate of Completion</span>
                       </div>
                     </div>
                   </div>

@@ -35,13 +35,13 @@ const ContactPage = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'mittalaws@gmail.com',
-      href: 'mailto:mittalaws@gmail.com',
+      value: 'mittaldomadiya44@gmail.com',
+      href: 'mailto:mittaldomadiya44@gmail.com',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'India',
+      value: 'Ahmedabad, Gujarat, India',
       href: null,
     },
   ];
@@ -64,7 +64,7 @@ const ContactPage = () => {
     <>
       <Helmet>
         <title>Contact - Mittal Domadiya</title>
-        <meta name="description" content="Get in touch with Mittal Domadiya. Email: mittalaws@gmail.com. Available for DevOps consulting and collaboration." />
+        <meta name="description" content="Get in touch with Mittal Domadiya. Email: mittaldomadiya44@gmail.com. Available for DevOps consulting and collaboration." />
       </Helmet>
 
       <div className="min-h-screen pt-[7.25rem] md:pt-[7.75rem] lg:pt-[8.5rem] pb-16 px-4">

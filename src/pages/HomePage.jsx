@@ -32,32 +32,32 @@ const HomePage = () => {
 
   const communities = [
     {
-      name: 'Cyber Kavach Club',
-      role: 'Active Member',
-      description: 'Cybersecurity awareness and ethical hacking',
+      name: 'CyberKavach Club',
+      role: 'Core Team Member',
+      description: 'Cybersecurity awareness, OSINT, and campus workshops',
       icon: '🛡️',
     },
     {
       name: 'AIML Club',
-      role: 'Member',
-      description: 'Artificial Intelligence and Machine Learning initiatives',
+      role: 'Core Team Member',
+      description: 'Peer-learning sessions on AI and DevOps tooling',
       icon: '🤖',
     },
     {
-      name: 'Google Developer Groups',
-      role: 'Community Member',
-      description: 'Cloud technologies and developer ecosystem',
-      icon: '🌐',
+      name: 'Training & Placement Cell',
+      role: 'Student Coordinator',
+      description: 'Campus placement drives and recruiter coordination',
+      icon: '🤝',
     },
   ];
 
   const skills = [
-    { name: 'DevOps', level: 90 },
-    { name: 'Cloud Architecture', level: 85 },
-    { name: 'Kubernetes', level: 88 },
-    { name: 'Docker', level: 92 },
-    { name: 'CI/CD', level: 87 },
-    { name: 'Python', level: 80 },
+    { name: 'Kubernetes', level: 82 },
+    { name: 'Docker', level: 85 },
+    { name: 'AWS & Cloud', level: 78 },
+    { name: 'CI/CD & GitOps', level: 80 },
+    { name: 'Terraform (IaC)', level: 75 },
+    { name: 'Go & Python', level: 80 },
   ];
 
   // Refs for scroll-triggered animations
@@ -306,8 +306,8 @@ const HomePage = () => {
                 style={{ background: 'linear-gradient(90deg, transparent, #CF9EFF, transparent)' }}
               />
               <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                Passionate DevOps Engineer with expertise in cloud infrastructure, containerization, and automation.
-                Committed to building scalable, reliable systems and fostering collaborative development environments.
+                Final-year Computer Science student focused on DevOps and cloud — building automated, observable
+                infrastructure on AWS and Kubernetes, and learning by shipping real, self-built projects.
               </p>
             </motion.div>
           </div>
