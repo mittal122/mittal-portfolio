@@ -183,8 +183,8 @@ const ExperiencePage = () => {
             </p>
           </motion.div>
 
-          {/* ── Split Layout: Details Left + CardSwap Right ── */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-20">
+          {/* ── Split Layout: Details Left + CardSwap Right (desktop only) ── */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-20">
 
             {/* Left Side — Active Project Detail */}
             <motion.div
@@ -411,59 +411,103 @@ const ExperiencePage = () => {
             </motion.div>
           </div>
 
-          {/* ── Mobile/Tablet Card Grid (shown below lg) ── */}
-          <div className="lg:hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  className="cursor-target group cursor-pointer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                  onClick={() => setActiveProject(index)}
-                >
-                  <div
-                    className="relative h-full overflow-hidden transition-all duration-300"
+          {/* ── Mobile/Tablet: full-detail single-column cards (below lg) ── */}
+          <div className="lg:hidden space-y-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: (index % 2) * 0.05 }}
+                className="overflow-hidden"
+                style={{
+                  background: `${accentDim}0.04)`,
+                  border: `1px solid ${accentDim}0.12)`,
+                  borderRadius: '18px',
+                }}
+              >
+                {/* Image header */}
+                <div className="relative h-44 sm:h-52 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,0,16,0.15) 30%, #060010 100%)' }} />
+                  <span
+                    className="absolute top-3 left-3 text-[10px] font-mono tracking-wider px-2 py-1"
                     style={{
-                      background: `${accentDim}0.03)`,
-                      border: `1px solid ${activeProject === index ? `${accentDim}0.25)` : `${accentDim}0.1)`}`,
-                      borderRadius: '14px',
+                      color: accent,
+                      background: 'rgba(6,0,16,0.7)',
+                      border: `1px solid ${accentDim}0.25)`,
+                      borderRadius: '4px',
+                      backdropFilter: 'blur(8px)',
                     }}
                   >
-                    <div className="relative h-40 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 30%, #060010 100%)' }} />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-lg font-bold text-white mb-1">{project.title}</h3>
-                      <p className="text-xs line-clamp-2" style={{ color: 'rgba(255,255,255,0.45)' }}>{project.description}</p>
-                      <div className="flex flex-wrap gap-1.5 mt-3">
-                        {project.technologies.slice(0, 3).map((tech, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-0.5 text-[9px] font-mono"
-                            style={{
-                              background: `${accentDim}0.06)`,
-                              color: accent,
-                              border: `1px solid ${accentDim}0.15)`,
-                              borderRadius: '4px',
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                    #{String(project.id).padStart(2, '0')}
+                  </span>
+                </div>
+
+                {/* Body */}
+                <div className="p-5">
+                  <span className="text-[10px] font-mono tracking-wider block mb-2" style={{ color: `${accentDim}0.45)` }}>
+                    {project.period} · {project.type}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-3 leading-snug">{project.title}</h3>
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                    {project.description}
+                  </p>
+
+                  {/* Achievements */}
+                  <div className="space-y-2 mb-4">
+                    {project.achievements.map((a, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <ChevronRight size={14} className="flex-shrink-0 mt-0.5" style={{ color: accent }} />
+                        <span className="text-[13px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>{a}</span>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                </motion.div>
-              ))}
-            </div>
+
+                  {/* Tech */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-2.5 py-1 text-[10px] font-mono tracking-wide"
+                        style={{
+                          background: `${accentDim}0.06)`,
+                          color: accent,
+                          border: `1px solid ${accentDim}0.18)`,
+                          borderRadius: '6px',
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 active:scale-95"
+                      style={{
+                        color: accent,
+                        border: `1px solid ${accentDim}0.3)`,
+                        background: `${accentDim}0.08)`,
+                        borderRadius: '8px',
+                      }}
+                    >
+                      <ExternalLink size={15} />
+                      View Code on GitHub
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

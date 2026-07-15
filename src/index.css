@@ -62,14 +62,17 @@
   html {
     scroll-behavior: smooth;
     cursor: default;
+    overflow-x: hidden;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
     background-color: #060010;
     color: #e5e5e5;
     cursor: default;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   /* Anchor navigation offset for fixed navbar */
