@@ -176,18 +176,27 @@ const Navigation = () => {
 
           {/* Logo - Center */}
           <Link to="/" className="cursor-target cursor-pointer flex items-center relative z-20">
-            <motion.img 
-              src="https://horizons-cdn.hostinger.com/cefdf522-75c3-48d6-8c09-370295405681/3cd355b3f9ce8b4bbf3d0f61081cf805.png"
-              alt="Mittal Domadiya Logo"
-              className="h-[30px] md:h-[35px] w-auto drop-shadow-[0_2px_8px_rgba(255,255,255,0.4)]"
+            <motion.div
+              aria-label="Mittal Domadiya"
+              className="flex items-center justify-center h-[34px] w-[34px] md:h-[40px] md:w-[40px] rounded-xl font-black text-base md:text-lg select-none"
+              style={{
+                color: '#CF9EFF',
+                background: 'rgba(207,158,255,0.08)',
+                border: '1px solid rgba(207,158,255,0.35)',
+                letterSpacing: '-0.02em',
+                textShadow: '0 0 12px rgba(207,158,255,0.5)',
+                boxShadow: '0 2px 10px rgba(207,158,255,0.15)',
+              }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.1,
-                filter: "drop-shadow(0 0 12px rgba(255, 255, 255, 0.9))"
+                boxShadow: '0 0 16px rgba(207,158,255,0.6)',
               }}
               transition={{ duration: 0.3 }}
-            />
+            >
+              MD
+            </motion.div>
           </Link>
 
           {/* Right Navigation */}
