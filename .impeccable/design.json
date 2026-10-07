@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-07T11:11:29+00:00",
+  "title": "Design System: Mittal Domadiya Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "oklch(15.5% 0.028 276)",
+        "tonalRamp": [
+          "#080A17",
+          "#212432",
+          "#3E414F",
+          "#5D606E",
+          "#7F828F",
+          "#A2A4B1",
+          "#C6C8D4",
+          "#EBEEF9"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(20.5% 0.042 276)",
+        "tonalRamp": [
+          "#07091C",
+          "#202339",
+          "#3C4056",
+          "#5B6075",
+          "#7D8196",
+          "#A0A4B8",
+          "#C4C8DB",
+          "#EAEEFF"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "oklch(25.2% 0.057 276)",
+        "tonalRamp": [
+          "#060721",
+          "#1E2240",
+          "#3A405E",
+          "#595F7D",
+          "#7B819E",
+          "#9EA3BF",
+          "#C2C8E2",
+          "#E8EDFF"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline Indigo",
+        "canonical": "oklch(32.2% 0.071 276)",
+        "tonalRamp": [
+          "#060625",
+          "#1D2146",
+          "#383E66",
+          "#575E86",
+          "#7880A6",
+          "#9BA3C7",
+          "#C0C7EA",
+          "#E6EDFF"
+        ]
+      },
+      "lilac": {
+        "role": "primary",
+        "displayName": "Signal Lilac",
+        "canonical": "oklch(65.0% 0.178 280)",
+        "tonalRamp": [
+          "#0B003D",
+          "#1E0F64",
+          "#37308E",
+          "#5250B9",
+          "#7071E6",
+          "#9196FF",
+          "#B5BCFF",
+          "#DAE4FF"
+        ]
+      },
+      "lilac-soft": {
+        "role": "primary",
+        "displayName": "Soft Lilac",
+        "canonical": "oklch(75.6% 0.128 282)",
+        "tonalRamp": [
+          "#09022C",
+          "#201C4F",
+          "#3B3975",
+          "#58589D",
+          "#7878C6",
+          "#999AF2",
+          "#BCBFFF",
+          "#E2E6FF"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "oklch(88.0% 0.059 271)",
+        "tonalRamp": [
+          "#070A19",
+          "#1E2437",
+          "#3A4158",
+          "#58607B",
+          "#7781A0",
+          "#99A4C7",
+          "#BBC8EF",
+          "#E0EDFF"
+        ]
+      },
+      "mist-dim": {
+        "role": "neutral",
+        "displayName": "Dim Mist",
+        "canonical": "oklch(69.8% 0.072 274)",
+        "tonalRamp": [
+          "#06081F",
+          "#1D233F",
+          "#384061",
+          "#565F85",
+          "#7580AC",
+          "#96A2D2",
+          "#BBC7F5",
+          "#E1EDFF"
+        ]
+      },
+      "ember": {
+        "role": "secondary",
+        "displayName": "Ember Current",
+        "canonical": "oklch(70.5% 0.191 37)",
+        "tonalRamp": [
+          "#2F0000",
+          "#560000",
+          "#7F0A00",
+          "#AA3000",
+          "#D75023",
+          "#FF7144",
+          "#FF9B71",
+          "#FFC69D"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home name lockup; Antonio past 6rem by deliberate world choice."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every page title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings within a page."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lead and reading copy, 44ch to 62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tracked caps: nav, metadata, buttons, readouts, small headings."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Martian Mono for years, stacks, codes, hubs, diagram text only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lilac-lift",
+        "value": "0 10px 28px -10px rgba(124, 126, 248, 0.7)",
+        "purpose": "Primary button only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The single easing for all transitions and keyframes (Tailwind ease-out)."
+      },
+      {
+        "name": "state-fast",
+        "value": "200ms",
+        "purpose": "Link, field, and rail color changes."
+      },
+      {
+        "name": "state",
+        "value": "300ms",
+        "purpose": "Buttons, cards, map highlight and dimming."
+      },
+      {
+        "name": "route-in",
+        "value": "600ms; opacity 0, blur 8px, translateY 12px to rest",
+        "purpose": "Route content entry, paired with the field pulse (~500ms settle)."
+      },
+      {
+        "name": "map-camera",
+        "value": "700ms",
+        "purpose": "viewBox tween to the selected project; instant under reduced motion."
+      },
+      {
+        "name": "wire-draw",
+        "value": "900ms",
+        "purpose": "Map wires draw once on arrival."
+      },
+      {
+        "name": "settle",
+        "value": "700ms",
+        "purpose": "Map nodes fade in on arrival."
+      },
+      {
+        "name": "ring-pulse",
+        "value": "1000ms; scale 1 to 2.2, fade out",
+        "purpose": "One pulse per selection."
+      },
+      {
+        "name": "diagram-wipe",
+        "value": "1100ms after 150ms; scaleX 0 to 1 from left",
+        "purpose": "Plotter-pass reveal of the entry diagram."
+      },
+      {
+        "name": "entry-swap",
+        "value": "450ms; opacity 0.2, translateY 10px to rest",
+        "purpose": "Project entry change."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Field renders one still frame; all keyframes, packets, camera tween, and smooth scroll removed; default state is the finished state."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "map-portrait",
+        "value": "700px (container width)"
+      }
+    ],
+    "field": {
+      "renderScale": 0.75,
+      "maxDpr": 2,
+      "laneDesktop": 0.5,
+      "laneMobile": 0.15,
+      "dimMobile": 0.45,
+      "emberLaneMobile": 0.72,
+      "emberDimMobile": 0.35,
+      "calm": "0 at top to 1 after one viewport of scroll; reduces bands by up to 75%",
+      "pauses": "tab hidden; reduced motion draws stills only",
+      "pointer": "fine pointers bend the field locally; native cursor kept",
+      "fallback": "static radial lilac and ember gradient on void when WebGL is unavailable or lost"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lilac-filled control with void text and the lilac lift; one per action group.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">See the projects <svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/></svg></a>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;padding:0 24px;min-height:52px;font-size:0.75rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;border:1px solid;border-radius:0;cursor:pointer;transition:background-color .3s var(--out),border-color .3s var(--out),color .3s var(--out)} .ds-btn:focus-visible{outline:2px solid var(--ember);outline-offset:3px} .ds-btn-primary{background:var(--lilac);border-color:var(--lilac);color:var(--void);font-weight:600;text-decoration:none;box-shadow:0 10px 28px -10px rgba(124,126,248,0.7)} .ds-btn-primary:hover{background:var(--lilac-soft);border-color:var(--lilac-soft)}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ember-outlined control for contact, profiles, and repo links.",
+      "html": "<a class=\"ds-btn ds-btn-secondary\" href=\"#\">Write to me <svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/></svg></a>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;padding:0 24px;min-height:52px;font-size:0.75rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;border:1px solid;border-radius:0;cursor:pointer;transition:background-color .3s var(--out),border-color .3s var(--out),color .3s var(--out)} .ds-btn:focus-visible{outline:2px solid var(--ember);outline-offset:3px} .ds-btn-secondary{background:transparent;border-color:rgba(255,107,61,0.7);color:var(--ember);text-decoration:none} .ds-btn-secondary:hover{border-color:var(--ember);background:rgba(255,107,61,0.1)}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Square ink field with hairline border; lilac border on focus, ember caret.",
+      "html": "<label class=\"ds-label\" for=\"ds-f\">Your email</label><input id=\"ds-f\" class=\"ds-field\" placeholder=\"name@company.com\">",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-label{display:block;margin-bottom:8px;font-size:0.6875rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;color:var(--mist)} .ds-field{width:100%;background:rgba(18,21,42,0.8);border:1px solid var(--line);border-radius:0;padding:12px 16px;color:var(--mist);font:400 1rem 'Schibsted Grotesk',system-ui,sans-serif;caret-color:var(--ember);transition:border-color .2s} .ds-field::placeholder{color:var(--mist-dim)} .ds-field:hover{border-color:var(--mist-dim)} .ds-field:focus{border-color:var(--lilac);outline:none}"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "readout-plate",
+      "description": "Fixed 64px bar on a void plate: name, role caps, crosshair rule, quiet links, dotted menu button.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-cap ds-name\" href=\"#\">Mittal Domadiya</a><span class=\"ds-cap\">DevOps &amp; SRE · CSE ’27</span><span class=\"ds-rule\"><i></i></span><a class=\"ds-cap ds-quiet\" href=\"#\">GitHub</a><a class=\"ds-cap ds-quiet\" href=\"#\">Email</a><button class=\"ds-menu\" aria-label=\"Open menu\"><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><circle cx=\"3\" cy=\"3\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"3\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"3\" cy=\"9\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"9\" r=\"1.3\" fill=\"currentColor\"/></svg></button></header>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-bar{display:flex;align-items:center;gap:24px;height:64px;padding:0 40px;background:rgba(9,11,24,0.85);border-bottom:1px solid rgba(42,47,87,0.7)} .ds-cap{font-size:0.6875rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;color:var(--mist-dim);text-decoration:none;white-space:nowrap} .ds-name{font-size:0.75rem;color:var(--mist)} .ds-quiet,.ds-name{transition:color .2s} .ds-quiet:hover,.ds-name:hover{color:var(--ember)} .ds-rule{position:relative;flex:1;height:1px;margin:0 16px;background:var(--line)} .ds-rule i{position:absolute;left:50%;top:50%;width:1px;height:16px;transform:translateY(-50%);background:var(--mist-dim)} .ds-menu{display:grid;place-items:center;width:44px;height:44px;border-radius:9999px;border:1px solid var(--line);background:transparent;color:var(--mist);cursor:pointer;transition:color .2s,border-color .2s} .ds-menu:hover{border-color:var(--ember);color:var(--ember)} .ds-menu:focus-visible,.ds-cap:focus-visible{outline:2px solid var(--ember);outline-offset:3px}"
+    },
+    {
+      "name": "Route Rail",
+      "kind": "nav",
+      "description": "Left vertical route list; ember dot marks the current route.",
+      "html": "<nav class=\"ds-rail\"><a class=\"ds-rl is-on\" href=\"#\"><i></i>Home</a><a class=\"ds-rl\" href=\"#\"><i></i>Projects</a><a class=\"ds-rl\" href=\"#\"><i></i>About</a></nav>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-rail{display:flex;flex-direction:column;gap:28px} .ds-rl{display:flex;align-items:center;gap:12px;min-height:24px;font-size:0.6875rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;color:var(--mist-dim);text-decoration:none;transition:color .2s} .ds-rl i{width:6px;height:6px;border-radius:9999px;background:var(--line);transition:background .2s} .ds-rl:hover{color:var(--ember)} .ds-rl:hover i{background:var(--ember)} .ds-rl.is-on{color:var(--mist)} .ds-rl.is-on i{background:var(--ember)} .ds-rl:focus-visible{outline:2px solid var(--ember);outline-offset:3px}"
+    },
+    {
+      "name": "Stack Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Square outlined mono tag; hub tools take a lilac border and turn ember on hover.",
+      "html": "<span class=\"ds-tag ds-hub\">Kubernetes</span> <span class=\"ds-tag\">Prometheus</span>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-tag{display:inline-block;padding:6px 12px;border:1px solid var(--line);font:400 0.75rem 'Martian Mono',ui-monospace,monospace;color:var(--mist-dim);transition:border-color .2s} .ds-hub{border-color:rgba(124,126,248,0.7);color:var(--mist)} .ds-hub:hover{border-color:var(--ember)}"
+    },
+    {
+      "name": "Featured Card",
+      "kind": "card",
+      "refersTo": "card-featured",
+      "description": "Square ink card whose whole surface links to the entry; hairline border goes ember on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-ch\"><div><h3 class=\"ds-cn\">Helmsman</h3><p class=\"ds-ct\">AI Kubernetes deployment platform</p></div><span class=\"ds-cy\">2026</span></div><div class=\"ds-cd\"></div><a class=\"ds-cf\" href=\"#\"><span>Read the entry</span><svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/></svg></a></article>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-card{display:flex;flex-direction:column;max-width:340px;border:1px solid var(--line);background:rgba(18,21,42,0.7);transition:border-color .3s var(--out)} .ds-card:hover,.ds-card:focus-within{border-color:var(--ember)} .ds-ch{display:flex;justify-content:space-between;gap:16px;padding:20px 20px 0} .ds-cn,.ds-ct,.ds-cf span{margin:0;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;} .ds-cn{font-size:0.8125rem;color:var(--mist)} .ds-ct{margin-top:8px;font-size:0.6875rem;color:var(--mist-dim)} .ds-cy{font:400 0.75rem 'Martian Mono',ui-monospace,monospace;color:var(--mist-dim)} .ds-cd{height:96px;margin:16px} .ds-cf{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-top:1px solid var(--line);color:var(--mist);font-size:0.6875rem;text-decoration:none} .ds-cf svg{color:var(--mist-dim);transition:transform .3s var(--out),color .3s} .ds-card:hover .ds-cf{color:var(--ember)} .ds-card:hover .ds-cf svg{transform:translateX(4px);color:var(--ember)} .ds-cf:focus-visible{outline:2px solid var(--ember);outline-offset:3px}"
+    },
+    {
+      "name": "Status Readout",
+      "kind": "custom",
+      "refersTo": "readout-plate",
+      "description": "Fixed bottom-right availability readout on a void plate, ember dot.",
+      "html": "<p class=\"ds-ro\"><span class=\"ds-rk\"><i></i>Status</span><span class=\"ds-rv\">Open to roles</span><span class=\"ds-rs\">Full-time · 2027</span></p>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-ro{display:inline-block;max-width:10.5rem;margin:0;padding:12px;text-align:right;background:rgba(9,11,24,0.85)} .ds-ro span{display:block;font-size:0.6875rem;font-weight:500;font-family:'Schibsted Grotesk',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.22em;color:var(--mist-dim)} .ds-rk{display:flex!important;align-items:center;justify-content:flex-end;gap:8px} .ds-rk i{width:6px;height:6px;border-radius:9999px;background:var(--ember)} .ds-rv{margin-top:8px;color:var(--mist)!important} .ds-rs{margin-top:4px}"
+    },
+    {
+      "name": "Display Heading",
+      "kind": "custom",
+      "description": "Uppercase Antonio page title at headline scale; supporting line sits below, never above.",
+      "html": "<h1 class=\"ds-display\">Projects</h1><p class=\"ds-lead\">Seven open-source projects, wired to the tools they actually use.</p>",
+      "css": ":host{--void:#090B18;--ink:#12152A;--line:#2A2F57;--lilac:#7C7EF8;--lilac-soft:#A3A5FF;--mist:#C9D6FF;--mist-dim:#8F9BCB;--ember:#FF6B3D;--out:cubic-bezier(0.16,1,0.3,1)} .ds-display{margin:0;font:600 clamp(3.5rem,11vw,8.5rem)/0.92 Antonio,Impact,sans-serif;letter-spacing:-0.01em;text-transform:uppercase;color:var(--mist);text-wrap:balance} .ds-lead{margin-top:24px;max-width:60ch;font:400 1.125rem/1.625 'Schibsted Grotesk',system-ui,sans-serif;color:var(--mist)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shader Portal",
+    "overview": "The whole site sits on one living surface: a full-bleed WebGL fragment shader of lilac interference filaments crossed by a single ember current, with fine film grain, drawn on a void-indigo ground. The field stands for the infrastructure the work runs on. Everything placed over it is quiet: mist type, 1px hairlines, outlined controls, and one tall condensed display face set very large against tiny tracked caps. Product truth (who it is for, what it must prove) lives in PRODUCT.md; this file is only the visual system.\n\nDensity is low and the voice is two-register: huge uppercase Antonio for names and page titles, small spaced-out Schibsted Grotesk caps for everything marginal (nav, metadata, buttons, readouts), and Martian Mono only where the text is data (years, stacks, status codes, diagram labels). The field is made legible by the shader itself, not by luck: it masks its bands out of the reading column and calms as the visitor scrolls from the portal into reading.\n\nThe world rejects the stacked-effect \"dark purple glow kit\": one shader, one display face, no second ambient effect layered on top.",
+    "keyCharacteristics": [
+      "One fragment shader is the only living surface; nothing else animates continuously except the projects map's packets.",
+      "Void ground, mist text, lilac structure, ember as the single incandescent accent.",
+      "Antonio display past 6rem by deliberate world choice, against 11px caps tracked at 0.22em.",
+      "Square corners and 1px hairlines everywhere; round only for dots, pills, and the menu button.",
+      "Fixed chrome (top bar, rails, readouts) sits on translucent void plates so it stays legible over the field."
+    ],
+    "rules": [
+      {
+        "name": "The One Ember Rule",
+        "body": "Ember means \"live\": current, hovered, focused, selected, or the human in the loop. It never fills a large area and never decorates a static element.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "`line` draws edges and nothing else. Any text that must be read uses mist or mist-dim.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Registers Rule",
+        "body": "Text is either display (Antonio, uppercase, huge) or label/body (Schibsted). There is no mid-size bold sans heading tier; when a heading must be small, it is a label in mist.",
+        "section": "typography"
+      },
+      {
+        "name": "The Data-Only Mono Rule",
+        "body": "Martian Mono is reserved for values a machine would also produce: dates, versions, stacks, codes. Never for prose or headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Kicker Rule",
+        "body": "Nothing sits above a heading as a category tag or eyebrow. Supporting lines (role line, tagline, metadata) go below the heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plate Rule",
+        "body": "Anything fixed over the field sits on a void plate of at least 85% opacity. Text never relies on the field happening to be dark behind it.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Lift Rule",
+        "body": "The primary button is the only element with a shadow. Cards, fields, and chrome stay flat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the shader as the only living surface and let it carry the atmosphere; everything placed on it stays flat and quiet.",
+      "Do set page titles in uppercase Antonio 600 at 0.92 line height; sizes past 6rem are the world's deliberate choice, not an error.",
+      "Do put every fixed or overlaid element on a void plate of at least 85% opacity.",
+      "Do use ember only for live state: current, hover, focus, selection, and the single human-in-the-loop mark in a diagram.",
+      "Do use the out-expo curve for all transitions and make the reduced-motion state the finished state.",
+      "Do keep hit targets at 44px minimum and the 2px ember focus ring at 3px offset."
+    ],
+    "donts": [
+      "Don't use `line` for any text; it is for hairlines and outlines only.",
+      "Don't place kickers or eyebrows above headings; supporting lines go below.",
+      "Don't add a second ambient effect (glows, particles, gradient blobs, glass blur) on top of the field.",
+      "Don't add shadows beyond the primary button's lilac lift, or round the corners of rectangles.",
+      "Don't set prose or headings in Martian Mono.",
+      "Don't add a custom cursor, scroll inertia, or a percentage loader."
+    ]
+  }
+}

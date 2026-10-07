@@ -1,0 +1,2 @@
+Antonio, Schibsted Grotesk and Martian Mono: SIL Open Font License 1.1.
+Source: Google Fonts (fonts.google.com), latin subset, variable weight, self-hosted.

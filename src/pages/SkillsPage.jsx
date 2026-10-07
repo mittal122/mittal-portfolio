@@ -1,221 +1,48 @@
+import { Link } from 'react-router-dom';
+import { toolkit, projects } from '@/data/profile';
+import { Meta, PageHeader, column } from '@/components/Page';
 
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { Cloud, Container, Workflow, Code, Wrench, Brain } from 'lucide-react';
-import TrueFocus from '@/components/TrueFocus';
+// Evidence instead of self-rated percentages: which projects actually use a tool.
+// Matches the tool's first word against each project's stack on word boundaries
+// (so "Go" never matches "Django").
+const usedIn = (item) => {
+  const key = item.split(/[\s(/]/)[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`\\b${key}\\b`, 'i');
+  return projects.filter((p) => p.stack.some((s) => re.test(s)));
+};
 
-const accent = '#CF9EFF';
-const accentDim = 'rgba(207,158,255,';
-
-const SkillsPage = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
-
-  const skillCategories = [
-    {
-      id: 'cloud',
-      name: 'Cloud',
-      icon: Cloud,
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
-      skills: ['AWS (EC2, EKS, S3, IAM, VPC, Lambda)', 'Amazon Redshift', 'Google Cloud'],
-      description: 'Cloud infrastructure and services',
-    },
-    {
-      id: 'containerization',
-      name: 'Containers & Orchestration',
-      icon: Container,
-      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop&q=80',
-      skills: ['Docker', 'Kubernetes', 'Helm', 'kind / minikube'],
-      description: 'Container orchestration and packaging',
-    },
-    {
-      id: 'iac-cicd',
-      name: 'IaC & CI/CD',
-      icon: Workflow,
-      image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop&q=80',
-      skills: ['Terraform', 'GitHub Actions', 'Jenkins', 'ArgoCD', 'Git'],
-      description: 'Infrastructure as code and delivery pipelines',
-    },
-    {
-      id: 'observability',
-      name: 'Observability',
-      icon: Wrench,
-      image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=600&fit=crop&q=80',
-      skills: ['Prometheus', 'Grafana', 'Loki', 'Linux'],
-      description: 'Monitoring, metrics, and logging',
-    },
-    {
-      id: 'languages',
-      name: 'Languages',
-      icon: Code,
-      image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&q=80',
-      skills: ['Go', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'],
-      description: 'Programming and scripting languages',
-    },
-    {
-      id: 'ai-backend',
-      name: 'AI & Backend',
-      icon: Brain,
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
-      skills: ['Node.js', 'FastAPI', 'PostgreSQL', 'LangGraph', 'Google Gemini API', 'NVIDIA NIM'],
-      description: 'Backend services and applied AI',
-    },
-  ];
-
+export default function SkillsPage() {
   return (
     <>
-      <Helmet>
-        <title>Skills - Mittal Domadiya</title>
-        <meta name="description" content="Explore Mittal Domadiya's technical skills including cloud technologies, containerization, CI/CD, programming languages, and advanced AI concepts." />
-      </Helmet>
+      <Meta title="Skills" description="Mittal Domadiya's toolkit across cloud, Kubernetes, IaC, CI/CD, observability, languages and applied AI, with the projects that use each tool." />
+      <PageHeader title="Toolkit">
+        No skill bars. Each tool links to the projects where I actually used it; tools with no project link are ones I've learned through coursework or labs.
+      </PageHeader>
 
-      <div className="min-h-screen pt-[7.25rem] md:pt-[7.75rem] lg:pt-[8.5rem] pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8 }}
-              className="w-16 h-[2px] mx-auto mb-6"
-              style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
-            />
-            <div className="mb-6">
-              <TrueFocus
-                sentence="Skills & Expertise"
-                manualMode={false}
-                blurAmount={5}
-                borderColor="#CF9EFF"
-                glowColor="rgba(207, 158, 255, 0.6)"
-                animationDuration={0.5}
-                pauseBetweenAnimations={1}
-                className="text-5xl sm:text-6xl md:text-7xl font-black text-white"
-                textStyle={{ textShadow: `0 0 50px ${accentDim}0.4), 0 0 100px ${accentDim}0.15)` }}
-              />
-            </div>
-            <p className="text-xl max-w-3xl mx-auto" style={{ color: `${accentDim}0.5)` }}>
-              A comprehensive ecosystem of DevOps and cloud technologies
-            </p>
-          </motion.div>
-
-          {/* Skill Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-7 mb-16">
-            {skillCategories.map((category, index) => {
-              const Icon = category.icon;
-              const isActive = activeCategory === category.id;
-              return (
-                <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  whileHover={{ y: -8 }}
-                  onHoverStart={() => setActiveCategory(category.id)}
-                  onHoverEnd={() => setActiveCategory(null)}
-                  className="cursor-target relative overflow-hidden cursor-pointer transition-all group"
-                  style={{
-                    background: `${accentDim}0.03)`,
-                    border: `1px solid ${accentDim}${isActive ? '0.3' : '0.12'})`,
-                    borderRadius: '14px',
-                    boxShadow: isActive
-                      ? `0 0 35px ${accentDim}0.12), 0 8px 30px ${accentDim}0.08)`
-                      : `0 0 15px ${accentDim}0.03)`,
-                  }}
-                >
-                  {/* Category Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <motion.img
-                      src={category.image}
-                      alt={category.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(to top, #060010 5%, rgba(6,0,16,0.5) 50%, transparent)',
-                      }}
-                    />
-                    <div className="absolute bottom-3 left-4 right-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="p-2.5"
-                          style={{
-                            background: `${accentDim}0.15)`,
-                            border: `1px solid ${accentDim}0.25)`,
-                            borderRadius: '10px',
-                          }}
-                        >
-                          <Icon style={{ color: accent }} size={22} />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white drop-shadow-lg">{category.name}</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <p className="text-sm mb-4" style={{ color: `${accentDim}0.45)` }}>{category.description}</p>
-
-                    <div className="space-y-2">
-                      {category.skills.map((skill, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, x: -15 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.35, delay: index * 0.08 + i * 0.05 }}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accent }} />
-                          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>{skill}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Skill bar */}
-                    <motion.div
-                      className="mt-5 h-[2px] rounded-full overflow-hidden"
-                      style={{ background: `${accentDim}0.08)` }}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: index * 0.08 + 0.4 }}
-                    >
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{ background: `linear-gradient(90deg, ${accent}, #9B59B6)` }}
-                        initial={{ width: 0 }}
-                        animate={{ width: '85%' }}
-                        transition={{ duration: 1, delay: index * 0.08 + 0.6 }}
-                      />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Technology Ecosystem */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl font-bold text-white mb-4">Interconnected Ecosystem</h2>
-            <p className="max-w-2xl mx-auto" style={{ color: `${accentDim}0.45)` }}>
-              These skills work together to create robust, scalable, and efficient DevOps solutions.
-              Each technology complements the others, forming a comprehensive toolkit for modern cloud infrastructure.
-            </p>
-          </motion.div>
-        </div>
+      <div className={`${column} pb-32`}>
+        {toolkit.map((g) => (
+          <section key={g.group} aria-labelledby={`g-${g.group}`} className="grid gap-6 border-t border-line py-10 lg:grid-cols-[14rem_minmax(0,1fr)]">
+            <h2 id={`g-${g.group}`} className="label pt-1 text-mist">{g.group}</h2>
+            <ul className="grid gap-x-10 gap-y-5 sm:grid-cols-2 2xl:grid-cols-3">
+              {g.items.map((item) => {
+                const ps = usedIn(item);
+                return (
+                  <li key={item}>
+                    <p className="text-lg text-mist">{item}</p>
+                    <p className="mt-1 text-sm text-mist-dim">
+                      {ps.length ? (
+                        <>Used in {ps.map((p, i) => (
+                          <span key={p.slug}>{i > 0 && ', '}<Link className="underline decoration-line underline-offset-4 hover:text-ember hover:decoration-ember" to={`/projects#${p.slug}`}>{p.name}</Link></span>
+                        ))}</>
+                      ) : 'Coursework and labs'}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ))}
       </div>
     </>
   );
-};
-
-export default SkillsPage;
+}

@@ -52,3 +52,8 @@ plugins
 *.temp
 .DS_Store
 Thumbs.db
+
+# impeccable: keep the design record (design.json, surface briefs); the rest is local tooling
+.impeccable/*
+!.impeccable/design.json
+!.impeccable/surfaces/
