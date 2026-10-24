@@ -33,6 +33,7 @@ Personal portfolio for Mittal Domadiya, a Computer Science & Engineering student
 - Routes: `/`, `/about`, `/projects` (`/experience` redirects there), `/skills`, `/certifications` (labelled "Courses"), `/contact`, and a catch-all 404.
 - All displayed facts live in `src/data/profile.js`; pages render from it.
 - Contact form sends through Formspree when `VITE_FORMSPREE_ID` is set (form ID is public, not a secret); without it, submit opens the visitor's mail app prefilled. Check: `node src/lib/contact.check.mjs`.
+- Toolkit (decided 2026-10-24): four skill groups added from Mittal's AI-training resume (AI training & evaluation, Testing, Frameworks & data, Models & agents). Skills only, by explicit request; the resume's experience, education, location and phone are NOT on the site. Tools without a project show no provenance line (never "coursework").
 - Removed by decision (2026-10-07): the `/fun` mini-games page, the location line on Contact, the Blackpast font.
 - Role line (decided): "DevOps & SRE engineer in training · BTech CSE '27 · open to full-time roles from 2027". Never "Cloud Architect", "SRE Specialist", "consulting", or "professional work".
 

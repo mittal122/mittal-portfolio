@@ -174,4 +174,9 @@ export const toolkit = [
   { group: 'Observability', items: ['Prometheus', 'Grafana', 'Loki', 'Linux'] },
   { group: 'Languages', items: ['Go', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'] },
   { group: 'AI & backend', items: ['Node.js', 'FastAPI', 'PostgreSQL', 'LangGraph', 'Google Gemini API', 'NVIDIA NIM'] },
+  // Added 2026-10-24 from Mittal's AI-training resume (skills section only, by request).
+  { group: 'AI training & evaluation', items: ['RL environment design', 'LLM evaluation', 'Benchmark task authoring (Terminal-Bench 3, Harbor, SWE-style)', 'Reward and verifier design', 'Rubric design', 'LLM-as-judge grading', 'Difficulty calibration', 'Model failure analysis', 'Trajectory review', 'Task instruction writing', 'Data QC'] },
+  { group: 'Testing', items: ['pytest', 'Behavioural test suites', 'Mutation testing', 'Oracle and no-op baselines', 'CI on GitHub Actions', 'Code review'] },
+  { group: 'Frameworks & data', items: ['React', 'Next.js', 'Bun', 'Express', 'Celery', 'Redis', 'MongoDB', 'Playwright', 'GitHub'] },
+  { group: 'Models & agents', items: ['GLM-5.2', 'Qwen', 'DeepSeek', 'Claude Code', 'OpenRouter and OpenAI-compatible APIs', 'MCP'] },
 ];
